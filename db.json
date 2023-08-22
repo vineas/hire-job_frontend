@@ -1,0 +1,138 @@
+{
+  "pekerja": [
+    {
+      "id": 1,
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_name": "alvienas",
+      "pekerja_phone": "081212121212",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123"
+    },
+    {
+      "id": 2,
+      "pekerja_email": "yandika@gmail.com",
+      "pekerja_name": "yandika",
+      "pekerja_phone": "081298192812",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123"
+    },
+    {
+      "pekerja_email": "haykal@gmail.com",
+      "pekerja_name": "haykal",
+      "pekerja_phone": "081212121290",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123",
+      "id": 3
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_name": "ruli",
+      "pekerja_phone": "081290182739",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123",
+      "id": 4
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_name": "ruli",
+      "pekerja_phone": "081290182739",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123",
+      "id": 5
+    },
+    {
+      "pekerja_email": "sandri@gmail.com",
+      "pekerja_name": "Sandri",
+      "pekerja_phone": "081234567891",
+      "pekerja_password": "123",
+      "pekerja_confirm_password": "123",
+      "id": 6
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_password": "123",
+      "": "k",
+      "id": 7
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_password": "123",
+      "id": 8
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_password": "123",
+      "id": 9
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_password": "123",
+      "id": 10
+    },
+    {
+      "pekerja_email": "ruli@gmail.com",
+      "pekerja_password": "123",
+      "id": 11
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 12
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 13
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 14
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 15
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 16
+    },
+    {
+      "pekerja_email": "",
+      "pekerja_password": "",
+      "id": 17
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "asdasd",
+      "id": 18
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 19
+    },
+    {
+      "pekerja_email": "sandri@gmail.com",
+      "pekerja_password": "123",
+      "id": 20
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 21
+    },
+    {
+      "pekerja_email": "alvienas@gmai.com",
+      "pekerja_password": "123",
+      "id": 22
+    },
+    {
+      "pekerja_email": "alvienas@gmail.com",
+      "pekerja_password": "123",
+      "id": 23
+    }
+  ]
+}
