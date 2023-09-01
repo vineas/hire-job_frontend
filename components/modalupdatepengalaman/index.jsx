@@ -25,7 +25,7 @@ const ModalUpdate = ({ pengalaman_kerja_id, posisi, nama_perusahaan, dari, sampa
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const experiences = await axios.put(`http://localhost:7474/pengalaman/${pengalaman_kerja_id}`,
+            const experiences = await axios.put(`http://shy-cyan-codfish-wear.cyclic.cloud/pengalaman/${pengalaman_kerja_id}`,
                 data
             );
             const result = experiences.data.data;

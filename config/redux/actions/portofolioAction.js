@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 export const getPortofolio = (setPortofolio) => async (dispatch) => {
   try {
     axios
-      .get(`http://localhost:7474/portofolio`)
+      .get(`http://shy-cyan-codfish-wear.cyclic.cloud/portofolio`)
       .then(function (respose) {
         setPortofolio(respose.data.data);
       });
@@ -22,7 +22,7 @@ export const getPortofolio = (setPortofolio) => async (dispatch) => {
 
 export const getDetailPortofolio = (setPortofolio, id) => async (dispatch) => {
   try {
-    axios.get(`http://localhost:7474/portofolio/${id}`).then((res) => {
+    axios.get(`http://shy-cyan-codfish-wear.cyclic.cloud/portofolio/${id}`).then((res) => {
       setPortofolio(res.data.data[0]);
 
       console.log(res.data.data[0]);
@@ -48,7 +48,7 @@ export const createPortofolio = (portofolio, portofolio_image) => async (dispatc
     formData.append("pekerja_id", portofolio.pekerja_id);
 
     console.log(portofolio);
-    axios.post(`http://localhost:7474/portofolio`, formData)
+    axios.post(`http://shy-cyan-codfish-wear.cyclic.cloud/portofolio`, formData)
       .then((res) => {
         console.log(res);
         Swal.fire({

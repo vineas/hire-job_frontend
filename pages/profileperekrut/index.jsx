@@ -32,7 +32,7 @@ const ProfilePerekrut = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/perekrut/profile/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/perekrut/profile/${getid}`)
                 .then((res) => {
                     setPerekrut(res.data.data[0]);
                     console.log(res.data.data[0]);

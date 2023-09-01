@@ -26,7 +26,7 @@ const LoginPerekrut = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:7474/perekrut/login`, data)
+        axios.post(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/perekrut/login`, data)
         .then((res) => {
             if (res.data.status === "success") {
               Swal.fire("Login Success", "Your account Success Login", "success")

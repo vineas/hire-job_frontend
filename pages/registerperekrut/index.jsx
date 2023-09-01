@@ -29,7 +29,7 @@ const RegisterPerekrut = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:7474/pekerja/register`, data)
+        axios.post(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/register`, data)
             .then((res) => {
               console.log(res);
                 alert("Register success")

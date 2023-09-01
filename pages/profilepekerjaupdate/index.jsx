@@ -66,7 +66,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/pengalaman/pekerja/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pengalaman/pekerja/${getid}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                 }, [])
@@ -95,7 +95,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/pekerja/profile/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile/${getid}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                     console.log(res.data.data[0]);
@@ -108,7 +108,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/skill/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${getid}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 }, [])
@@ -155,7 +155,7 @@ const ProfilePekerjaUpdate = () => {
         formData.append("pekerja_domisili", data.pekerja_domisili);
         formData.append("pekerja_tempat_kerja", data.pekerja_tempat_kerja);
         formData.append("pekerja_deskripsi", data.pekerja_deskripsi);
-        axios.put(`http://localhost:7474/pekerja/profile/${getid}`,
+        axios.put(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile/${getid}`,
             formData,
             {
                 headers: {
@@ -173,7 +173,7 @@ const ProfilePekerjaUpdate = () => {
 
 
     const handleDelete = (pengalaman_kerja_id) => {
-        axios.delete(`http://localhost:7474/pengalaman/${pengalaman_kerja_id}`)
+        axios.delete(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pengalaman/${pengalaman_kerja_id}`)
             .then((res) => {
                 Swal({
                     title: "Apakah Anda yakin?",
@@ -183,7 +183,7 @@ const ProfilePekerjaUpdate = () => {
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        axios.delete(`http://localhost:7474/pengalaman_kerja/${pengalaman_kerja_id}`)
+                        axios.delete(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pengalaman_kerja/${pengalaman_kerja_id}`)
                             .then((res) => {
                                 setPengalaman((prevPengalaman) =>
                                     prevPengalaman.filter(
@@ -208,7 +208,7 @@ const ProfilePekerjaUpdate = () => {
         const updatedSkills = skill.filter((s) => s.skill_id !== skill_id);
         setSkill(updatedSkills);
 
-        axios.delete(`http://localhost:7474/skill/${skill_id}`)
+        axios.delete(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${skill_id}`)
             .then((res) => {
                 console.log(res);
             })
@@ -225,7 +225,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/portofolio/pekerja/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/portofolio/pekerja/${getid}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])
@@ -237,7 +237,7 @@ const ProfilePekerjaUpdate = () => {
     }, [getid]);
 
     const handleDeletePortofolio = (portofolio_id) => {
-        axios.delete(`http://localhost:7474/portofolio/${portofolio_id}`)
+        axios.delete(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/portofolio/${portofolio_id}`)
             .then((res) => {
                 Swal({
                     title: "Apakah Anda yakin?",
@@ -247,7 +247,7 @@ const ProfilePekerjaUpdate = () => {
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        axios.delete(`http://localhost:7474/portofolio/${portofolio_id}`)
+                        axios.delete(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/portofolio/${portofolio_id}`)
                             .then((res) => {
                                 setPortofolio((prevPortofolio) =>
                                     prevPortofolio.filter(
@@ -409,104 +409,104 @@ const ProfilePekerjaUpdate = () => {
                         </section>
                         <section className="col-md-8 " style={{ marginTop: 40 }}>
                             <form onSubmit={handleSubmit}>
-{/* 
+                                {/* 
                                 {Array.isArray(data) ? (
                                     data.map((worker) => (
  */}
-                                        <div
-                                            className="border"
-                                            style={{
-                                                borderRadius: 10,
-                                                width: "100%",
-                                                paddingTop: 30,
-                                                paddingLeft: 20,
-                                                paddingRight: 30,
-                                                backgroundColor: "white"
-                                            }}
-                                        >
-                                            <h3>Data diri</h3>
-                                            <hr />
-                                            <div>
-                                                <label htmlFor="">Nama lengkap</label>
-                                                <div className="input-group mb-3">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Masukan nama lengkap"
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        name="pekerja_name"
-                                                        value={data.pekerja_name}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label htmlFor="">Job desk</label>
-                                                <div className="input-group mb-3">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Masukan job desk anda"
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        name="pekerja_jobdesk"
-                                                        value={data.pekerja_jobdesk}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label htmlFor="">Domisili</label>
-                                                <div className="input-group mb-3">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Masukan domisili"
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        name="pekerja_domisili"
-                                                        value={data.pekerja_domisili}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label htmlFor="">Tempat kerja</label>
-                                                <div className="input-group mb-3">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Masukan tempat kerja"
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        name="pekerja_tempat_kerja"
-                                                        defaultValue={"Tempat Kerja"}
-                                                        value={data.pekerja_tempat_kerja}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label htmlFor="">Deskripsi</label>
-                                                <div className="input-group mb-3">
-                                                    <textarea
-                                                        className="form-control"
-                                                        aria-label="With textarea"
-                                                        placeholder="Tuliskan deskipsi singkat"
-                                                        defaultValue={"Deskripsi"}
-                                                        name="pekerja_deskripsi"
-                                                        value={data.pekerja_deskripsi}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
+                                <div
+                                    className="border"
+                                    style={{
+                                        borderRadius: 10,
+                                        width: "100%",
+                                        paddingTop: 30,
+                                        paddingLeft: 20,
+                                        paddingRight: 30,
+                                        backgroundColor: "white"
+                                    }}
+                                >
+                                    <h3>Data diri</h3>
+                                    <hr />
+                                    <div>
+                                        <label htmlFor="">Nama lengkap</label>
+                                        <div className="input-group mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Masukan nama lengkap"
+                                                aria-label="Username"
+                                                aria-describedby="basic-addon1"
+                                                name="pekerja_name"
+                                                value={data.pekerja_name}
+                                                onChange={handleChange}
+                                                required
+                                            />
                                         </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">Job desk</label>
+                                        <div className="input-group mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Masukan job desk anda"
+                                                aria-label="Username"
+                                                aria-describedby="basic-addon1"
+                                                name="pekerja_jobdesk"
+                                                value={data.pekerja_jobdesk}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">Domisili</label>
+                                        <div className="input-group mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Masukan domisili"
+                                                aria-label="Username"
+                                                aria-describedby="basic-addon1"
+                                                name="pekerja_domisili"
+                                                value={data.pekerja_domisili}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">Tempat kerja</label>
+                                        <div className="input-group mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Masukan tempat kerja"
+                                                aria-label="Username"
+                                                aria-describedby="basic-addon1"
+                                                name="pekerja_tempat_kerja"
+                                                defaultValue={"Tempat Kerja"}
+                                                value={data.pekerja_tempat_kerja}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">Deskripsi</label>
+                                        <div className="input-group mb-3">
+                                            <textarea
+                                                className="form-control"
+                                                aria-label="With textarea"
+                                                placeholder="Tuliskan deskipsi singkat"
+                                                defaultValue={"Deskripsi"}
+                                                name="pekerja_deskripsi"
+                                                value={data.pekerja_deskripsi}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                                 {/* //     )) */}
                                 {/* // ) : ( */}
                                 {/* //     <p>Loading data...</p> // Display a loading message or handle the non-array case */}

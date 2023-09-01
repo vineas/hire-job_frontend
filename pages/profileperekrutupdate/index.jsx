@@ -56,7 +56,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`http://localhost:7474/perekrut/profile/${getid}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/perekrut/profile/${getid}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                     console.log(res.data.data[0]);
@@ -79,7 +79,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
         formData.append("perekrut_phone", data.perekrut_phone);
         formData.append("perekrut_linkedin", data.perekrut_linkedin);
 
-        axios.put(`http://localhost:7474/perekrut/profile/${getid}`,
+        axios.put(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/perekrut/profile/${getid}`,
             formData,
             {
                 headers: {

@@ -33,7 +33,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://localhost:7474/pengalaman/pekerja/${pekerja_id}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pengalaman/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                 })
@@ -45,7 +45,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://localhost:7474/skill/${pekerja_id}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 })
@@ -57,7 +57,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://localhost:7474/pekerja/profile/${pekerja_id}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile/${pekerja_id}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                 })
@@ -69,7 +69,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id !== null) {
-            axios.get(`http://localhost:7474/portofolio/pekerja/${pekerja_id}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/portofolio/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])

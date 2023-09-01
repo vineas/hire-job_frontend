@@ -23,7 +23,7 @@ const TopJobs = () => {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        axios.get(`http://localhost:7474/pekerja/profile`)
+        axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile`)
             .then((res) => {
                 setUsers(res.data.data);
             })
@@ -34,7 +34,7 @@ const TopJobs = () => {
 
     useEffect(() => {
         if (pekerja_id !== null) {
-            axios.get(`http://localhost:7474/skill/${pekerja_id}`)
+            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 }, [])
