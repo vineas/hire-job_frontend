@@ -43,7 +43,7 @@ const TopJobs = () => {
                 });
 
         }
-    }, [pekerja_id]);
+    }, [pekerja_id]); 
 
 
 
