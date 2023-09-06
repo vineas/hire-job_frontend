@@ -6,15 +6,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 const RegisterPerekrut = () => {
 
     let [data, setData] = useState({
-        pekerja_email: "",
-        pekerja_name: "",
-        pekerja_phone: "",
-        pekerja_password: "",
-        pekerja_confirmpassword: ""
+      perekrut_name:"",
+      perekrut_email:"",
+      perekrut_perusahaan:"",
+      perekrut_jabatan:"",
+      perekrut_phone:"",
+      perekrut_password:"",
+      perekrut_confirmpassword:""
       })
     
     
@@ -29,13 +32,26 @@ const RegisterPerekrut = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://hire-job-backend.vercel.app/pekerja/register`, data)
+        axios.post(`http://localhost:7474/perekrut/register`, data)
             .then((res) => {
-              console.log(res);
-                alert("Register success")
-                router.push("/loginpekerja");
-                localStorage.setItem('token', res.data.data.token)
-                // console.log(res.data);
+              if (res.data.status === "success") {
+                Swal.fire("Register Success", "Your account has been register", "success")
+                  .then((result) => {
+                    router.push("/loginperekrut");
+                    console.log(res);
+                    localStorage.setItem('token', res.data.data.token)
+                  })
+                  .catch((err) => {
+                    console.log(res.data);
+                  });
+              } else {
+                console.log(res.data.message);
+                Swal.fire("Login Error", res.data.message, "error");
+              }
+    
+              // console.log(res);
+              //   alert("Register success")
+              //   localStorage.setItem('token', res.data.data.token)
             })
             .catch((err) => {
                 alert(err);
@@ -59,7 +75,7 @@ const RegisterPerekrut = () => {
             integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
             crossOrigin="anonymous"
           />
-          <title>Register Pekerja</title>
+          <title>Register Perekrut</title>
           <style
             dangerouslySetInnerHTML={{
               __html:
@@ -141,7 +157,7 @@ const RegisterPerekrut = () => {
                       placeholder="Masukan nama lengkap"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_name"
+                      name="perekrut_name"
                       onChange={onChange}
                     />
                   </div>
@@ -155,7 +171,7 @@ const RegisterPerekrut = () => {
                       placeholder="Masukan email anda"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_email"
+                      name="perekrut_email"
                       onChange={onChange}
                     />
                   </div>
@@ -169,7 +185,7 @@ const RegisterPerekrut = () => {
                       placeholder="Masukan nama perusahaan"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_name"
+                      name="perekrut_perusahaan"
                       onChange={onChange}
                     />
                   </div>
@@ -183,7 +199,7 @@ const RegisterPerekrut = () => {
                       placeholder="Posisi di perusahaan anda"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_name"
+                      name="perekrut_jabatan"
                       onChange={onChange}
                     />
                   </div>
@@ -197,7 +213,7 @@ const RegisterPerekrut = () => {
                       placeholder="Masukan no handphone anda"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_phone"
+                      name="perekrut_phone"
                       onChange={onChange}
                     />
                   </div>
@@ -211,7 +227,7 @@ const RegisterPerekrut = () => {
                       placeholder="Masukan kata sandi"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_password"
+                      name="perekrut_password"
                       onChange={onChange}
                     />
                   </div>
@@ -225,7 +241,7 @@ const RegisterPerekrut = () => {
                       placeholder="Konfirmasi kata sandi"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      name="pekerja_confirmpassword"
+                      name="perekrut_confirmpassword"
                       onChange={onChange}
                     />
                   </div>
@@ -243,7 +259,7 @@ const RegisterPerekrut = () => {
                   style={{ display: "flex", justifyContent: "center", marginTop: 20 }}
                 >
                   <p>Anda sudah punya akun?</p>{" "}
-                  <Link href="/loginpekerja">
+                  <Link href="/loginperekrut">
                     <p className="text-warning" style={{ marginLeft: 5 }}>
                       Masuk disini
                     </p>

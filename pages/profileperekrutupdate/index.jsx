@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import profilephoto from '../../assets/img/editprofilecompany/profilepic.png'
+import defaultProfile from '../../assets/img/user_default.jpeg'
 import edit from '../../assets/img/editprofilecompany/edit.png'
 import porto from '../../assets/img/pekerjaprofileupdate/porto.png'
 import Image from 'next/image'
@@ -154,12 +154,12 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                         >
                                             <div style={{ display: "flex" }}>
                                                 <input
-                                                type='file'
-                                                name="perekrut_photo"
-                                                value={data.perekrut_photo}
-                                                onChange={handleUpload}
+                                                    type='file'
+                                                    name="perekrut_photo"
+                                                    value={data.perekrut_photo}
+                                                    onChange={handleUpload}
                                                 />
-                                                
+
                                                 {/* <Image
                                                     src={edit}
                                                     style={{ width: 16, height: 16 }}
@@ -169,10 +169,13 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                             <div>
                                                 <Image
                                                     // src={profilephoto}
-                                                    src={users.perekrut_photo}
+                                                    src={users.perekrut_photo == "undefined" || users.perekrut_photo == undefined || users.perekrut_photo == "null" || users.perekrut_photo == null
+                                                        ? defaultProfile
+                                                        : users.perekrut_photo
+                                                    }
                                                     alt="Perekrut Photo"
-                                                    width={150} // Set the actual width of the image
-                                                    height={150} // Set the actual height of the 10mage
+                                                    width={150}
+                                                    height={150}
                                                     style={{ marginTop: 50, borderRadius: 100 }}
                                                 />
                                             </div>

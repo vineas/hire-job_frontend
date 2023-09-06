@@ -10,6 +10,7 @@ import instagram from '../../assets/img/profileperekrut/instagram.png'
 import linkedin from '../../assets/img/profileperekrut/linkedin.png'
 import phone from '../../assets/img/profileperekrut/phone.png'
 import { v4 as uuidv4 } from 'uuid';
+import defaultProfile from '../../assets/img/user_default.jpeg'
 import Link from 'next/link'
 import axios from 'axios'
 
@@ -71,7 +72,10 @@ const ProfilePerekrut = () => {
                             <div style={{ display: "flex", justifyContent: "center" }}>
                                 {/* Provide width and height properties for the image */}
                                 <Image
-                                    src={perekrut.perekrut_photo}
+                                    src={perekrut.perekrut_photo == "undefined" || perekrut.perekrut_photo == undefined || perekrut.perekrut_photo == "null" || perekrut.perekrut_photo == null
+                                    ? defaultProfile
+                                    : perekrut.perekrut_photo
+                                    }
                                     alt="Perekrut Photo"
                                     width={150} // Set the actual width of the image
                                     height={150} // Set the actual height of the 10mage
