@@ -157,7 +157,7 @@ const TopJobs = () => {
                                     user.pekerja_domisili.toLowerCase().includes(searchTerm) ||
                                     user.skill_names.some((skill) => skill.toLowerCase().includes(searchTerm))
                                 );
-                            })
+                            }) 
                             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                             .map((user) => (
                                 <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>
