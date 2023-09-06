@@ -23,7 +23,7 @@ const TopJobs = () => {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile`)
+        axios.get(`http://localhost:7474/pekerja/profile`)
             .then((res) => {
                 setUsers(res.data.data);
             })
@@ -149,12 +149,14 @@ const TopJobs = () => {
                     <div className="col-md-12 " style={{ borderRadius: 15, padding: "0px 30px 20px 30px" }}>
                         {users
                             .filter((user) => {
-                                return search.toLowerCase() === ""
-                                    ? user
-                                    : user.pekerja_name.toLowerCase().includes(search) ? user
-                                    : user.pekerja_jobdesk.toLowerCase().includes(search)
-                                    ? user
-                                    : user.pekerja_domisili.toLowerCase().includes(search);
+                                const searchTerm = search.toLowerCase();
+                                return (
+                                    searchTerm === "" ||
+                                    user.pekerja_name.toLowerCase().includes(searchTerm) ||
+                                    user.pekerja_jobdesk.toLowerCase().includes(searchTerm) ||
+                                    user.pekerja_domisili.toLowerCase().includes(searchTerm) ||
+                                    user.skill_names.some((skill) => skill.toLowerCase().includes(searchTerm))
+                                );
                             })
                             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                             .map((user) => (
@@ -191,7 +193,7 @@ const TopJobs = () => {
                                                 : user.pekerja_domisili}</p>
                                         </div>
                                         <div>
-                                            <strong>Skills:</strong>
+                                            <strong>Skills: {user.skill_names.join(', ')}</strong>
                                             <div>
 
                                             </div>

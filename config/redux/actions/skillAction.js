@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 export const getSkill = (setSkill) => async (dispatch) => {
   try {
     axios
-      .get(`http://shy-cyan-codfish-wear.cyclic.cloud/skill`)
+      .get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill`)
       .then(function (respose) {
         setSkill(respose.data.data);
       });
@@ -29,7 +29,7 @@ export const createSkill = (skill) => async (dispatch) => {
     formData.append("pekerja_id", skill.pekerja_id);
 
     console.log(skill);
-    axios.post(`http://shy-cyan-codfish-wear.cyclic.cloud/skill`, formData, {
+    axios.post(`https://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
