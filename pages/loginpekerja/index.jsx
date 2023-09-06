@@ -26,7 +26,7 @@ const LoginPekerja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/login`, data)
+    axios.post(`https://hire-job-backend.vercel.app/pekerja/login`, data)
       .then((res) => {
         if (res.data.status === "success") {
           Swal.fire("Login Success", "Your account Success Login", "success")

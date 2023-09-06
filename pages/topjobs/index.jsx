@@ -12,29 +12,34 @@ import NavbarLogin from '../../components/navbarlogin'
 import Link from 'next/link'
 import defaultProfile from '../../assets/img/user_default.jpeg'
 import { useSelector } from 'react-redux'
+import { NewtonsCradle } from '@uiball/loaders'
+
 
 const TopJobs = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2;
+    const itemsPerPage = 5;
     let { pekerja_id } = useParams();
     let [users, setUsers] = useState([]);
 
     const [search, setSearch] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
-        axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile`)
+        axios.get(`https://hire-job-backend.vercel.app/pekerja/profile`)
             .then((res) => {
                 setUsers(res.data.data);
             })
             .catch((err) => {
                 console.log(err);
             });
+        setIsLoading(false);
     }, []);
 
     useEffect(() => {
         if (pekerja_id !== null) {
-            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${pekerja_id}`)
+            axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 }, [])
@@ -43,11 +48,7 @@ const TopJobs = () => {
                 });
 
         }
-    }, [pekerja_id]); 
-
-
-
-
+    }, [pekerja_id]);
 
     return (
         <>
@@ -142,12 +143,16 @@ const TopJobs = () => {
                         </div>
                     </div>
                 </section>
+
                 <section
                     className="col-md-12"
-                    style={{ marginTop: 2, borderRadius: 10, padding: "20px 10px 20px 10px" }}
-                >
+                    style={{ marginTop: 2, borderRadius: 10, padding: "20px 10px 20px 10px" }}>
                     <div className="col-md-12 " style={{ borderRadius: 15, padding: "0px 30px 20px 30px" }}>
-                        {users
+                        {isLoading ? (
+                            <div style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>
+                                <NewtonsCradle size={40} speed={1.4} color="black" />
+                            </div>
+                        ) : (users
                             .filter((user) => {
                                 const searchTerm = search.toLowerCase();
                                 return (
@@ -155,9 +160,9 @@ const TopJobs = () => {
                                     user.pekerja_name.toLowerCase().includes(searchTerm) ||
                                     user.pekerja_jobdesk.toLowerCase().includes(searchTerm) ||
                                     user.pekerja_domisili.toLowerCase().includes(searchTerm) ||
-                                    user.skill_names.some((skill) => skill.toLowerCase().includes(searchTerm))
+                                    user.skill_names.some((skill) => (skill ? skill : '').toLowerCase().includes(searchTerm))
                                 );
-                            }) 
+                            })
                             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                             .map((user) => (
                                 <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>
@@ -226,7 +231,8 @@ const TopJobs = () => {
                                     <hr />
                                 </div>
 
-                            ))}
+                            ))
+                        )}
 
                     </div>
                     <div className="pagination" style={{ marginTop: 12, marginLeft: 15 }}>
@@ -246,7 +252,6 @@ const TopJobs = () => {
                             </button>
                         ))}
                     </div>
-
                 </section>
 
             </main>

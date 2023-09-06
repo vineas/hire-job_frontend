@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import defaultProfile from '../../assets/img/user_default.jpeg'
+
 import mail from '../../assets/img/profilepekerja/mail.png'
 import porto from '../../assets/img/pekerjaprofileupdate/porto.png'
 import React, { useEffect, useState } from 'react'
@@ -11,13 +12,15 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { v4 as uuidv4 } from 'uuid';
-const ProfilePekerja = () => {
-    const router = useRouter()
-    const [skill, setSkill] = useState([]);
-    const [portofolio, setPortofolio] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [pengalaman, setPengalaman] = useState([])
+import TopJobs from '../topjobs'
 
+const ProfilePekerjaHiring = () => {
+    const router = useRouter();
+    const { pekerja_id } = router.query;
+    const [users, setUsers] = useState(null);
+    const [skill, setSkill] = useState([]);
+    const [pengalaman, setPengalaman] = useState([]);
+    const [portofolio, setPortofolio] = useState([]);
     const [getid, setGetId] = useState(null);
     const [pengalamanKerja, setPengalamanKerja] = useState({
         posisi: "",
@@ -25,36 +28,48 @@ const ProfilePekerja = () => {
         dari: "",
         sampai: "",
         deskripsi: "",
-        pekerja_id: getid
+        pekerja_id: "",
     });
 
     useEffect(() => {
-        const storedId = localStorage.getItem("pekerja_id");
-
-        if (!storedId) {
-            const newId = uuidv4();
-            localStorage.setItem("pekerja_id", newId);
-            setGetId(newId);
-        } else {
-            setGetId(storedId);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pengalaman/pekerja/${getid}`)
+        if (pekerja_id) {
+            axios.get(`http://hire-job-backend.vercel.app/pengalaman/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
-                }, [])
+                })
                 .catch((err) => {
                     console.log(err);
                 });
         }
-    }, [getid]);
+    }, [pekerja_id]);
 
     useEffect(() => {
-        if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${getid}`)
+        if (pekerja_id) {
+            axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
+                .then((res) => {
+                    setSkill(res.data.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, [pekerja_id]);
+
+    useEffect(() => {
+        if (pekerja_id) {
+            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${pekerja_id}`)
+                .then((res) => {
+                    setUsers(res.data.data[0]);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, [pekerja_id]);
+
+    useEffect(() => {
+        if (pekerja_id !== null) {
+            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])
@@ -63,41 +78,17 @@ const ProfilePekerja = () => {
                 });
 
         }
-    }, [getid]);
+    }, [pekerja_id]);
 
-    useEffect(() => {
-        if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/skill/${getid}`)
-                .then((res) => {
-                    setSkill(res.data.data);
-                }, [])
-                .catch((err) => {
-                    console.log(err);
-                });
-
-        }
-    }, [getid]);
-
-
-
-    useEffect(() => {
-        if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${getid}`)
-                .then((res) => {
-                    setUsers(res.data.data[0]);
-                    console.log(res.data.data[0]);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    }, [getid]);
-
+    if (!users) {
+        return
+    }
 
 
     return (
         <>
             <NavbarLogin />
+            {/* <TopJobs pekerja_id={pekerja_id}/> */}
             <Head>
                 <>
                     <meta charSet="UTF-8" />
@@ -140,31 +131,28 @@ const ProfilePekerja = () => {
                                     backgroundColor: "white"
                                 }}
                             >
-                                <div className="row" 
-                                // style={{paddingLeft: 20,paddingRight: 30}}
-                                >
+                                <div className="row">
                                     <div className="col-md-4 " />
                                     <div
                                         className="col-md-4 "
-                                        style={{ display: "flex", justifyContent: "center" }}>
+                                        style={{ display: "flex", justifyContent: "center" }}
+                                    >
                                         <div
                                             className="row"
                                             style={{ display: "flex", justifyContent: "center" }}
                                         >
                                             <div>
-                                                {/* {users.pekerja_photo ? ( */}
-
-                                                    <Image
-                                                        className='profile-photo'
-                                                        src={users.pekerja_photo == "undefined" || users.pekerja_photo == undefined || users.pekerja_photo == "null" || users.pekerja_photo == null
+                                                <Image
+                                                    className='profile-photo'
+                                                    src={users.pekerja_photo == "null" || users.pekerja_photo == null || users.pekerja_photo == "undefined" || users.pekerja_photo == undefined
                                                         ? defaultProfile
                                                         : users.pekerja_photo
-                                                        }
-                                                        alt="Pekerja Photo"
-                                                        width={150}
-                                                        height={150}
-                                                        style={{ marginTop: 10, borderRadius: 100 }}
-                                                    />
+                                                    }
+                                                    alt="Pekerja Photo"
+                                                    width={150}
+                                                    height={150}
+                                                    style={{ marginTop: 10, borderRadius: 100 }}
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +216,7 @@ const ProfilePekerja = () => {
                                                 <p>{users.pekerja_email}</p>
                                             </div>
                                         </div>
+
                                         {/* <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
                                                 <img
@@ -257,24 +246,16 @@ const ProfilePekerja = () => {
                                         </div> */}
                                     </div>
                                     <div className="col-md-12" style={{ marginTop: 30 }}>
-                                        <Link href='/profilepekerjaupdate'>
+                                        <Link href='#'>
                                             <button
-                                                pekerja_id={users.pekerja_id}
-                                                pekerja_photo={users.pekerja_photo}
-                                                pekerja_name={users.pekerja_name}
-                                                pekerja_jobdesk={users.pekerja_jobdesk}
-                                                pekerja_domisili={users.pekerja_domisili}
-                                                pekerja_tempat_kerja={users.pekerja_tempat_kerja}
-                                                pekerja_deskripsi={users.pekerja_deskripsi}
                                                 type="button"
-                                                className="btn btn-warning"
+                                                className="btn btn-primary"
                                                 style={{
                                                     color: "white",
-                                                    width: "100%",
-                                                    borderRadius:12
+                                                    width: "100%"
                                                 }}
                                             >
-                                                Edit
+                                                Hire
                                             </button>
                                         </Link>
                                     </div>
@@ -318,7 +299,6 @@ const ProfilePekerja = () => {
                                     </div>
                                 </div>
 
-
                                 <div className="col-md-12" style={{ paddingBottom: '24px' }}>
                                     <h3>Pengalaman kerja</h3>
                                     <hr />
@@ -354,4 +334,4 @@ const ProfilePekerja = () => {
     )
 }
 
-export default ProfilePekerja
+export default ProfilePekerjaHiring

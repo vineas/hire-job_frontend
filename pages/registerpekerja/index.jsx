@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 const RegisterPekerja = () => {
  
@@ -29,13 +30,26 @@ const RegisterPekerja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/register`, data)
+    axios.post(`https://hire-job-backend.vercel.app/pekerja/register`, data)
         .then((res) => {
-          console.log(res);
-            alert("Register success")
-            router.push("/loginpekerja");
-            localStorage.setItem('token', res.data.data.token)
-            // console.log(res.data);
+          if (res.data.status === "success") {
+            Swal.fire("Register Success", "Your account has been register", "success")
+              .then((result) => {
+                router.push("/loginpekerja");
+                console.log(res);
+                localStorage.setItem('token', res.data.data.token)
+              })
+              .catch((err) => {
+                console.log(res.data);
+              });
+          } else {
+            console.log(res.data.message);
+            Swal.fire("Login Error", res.data.message, "error");
+          }
+
+          // console.log(res);
+          //   alert("Register success")
+          //   localStorage.setItem('token', res.data.data.token)
         })
         .catch((err) => {
             alert(err);

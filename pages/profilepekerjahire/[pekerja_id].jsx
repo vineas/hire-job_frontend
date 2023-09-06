@@ -28,12 +28,12 @@ const ProfilePekerjaHire = () => {
         dari: "",
         sampai: "",
         deskripsi: "",
-        pekerja_id: getid,
+        pekerja_id: "",
     });
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pengalaman/pekerja/${pekerja_id}`)
+            axios.get(`http://hire-job-backend.vercel.app/pengalaman/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                 })
@@ -45,7 +45,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/skill/${pekerja_id}`)
+            axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 })
@@ -57,7 +57,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/pekerja/profile/${pekerja_id}`)
+            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${pekerja_id}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                 })
@@ -69,7 +69,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id !== null) {
-            axios.get(`http://hire-job-backend-14io6stvb-alvienasyandika-gmailcom.vercel.app/portofolio/pekerja/${pekerja_id}`)
+            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])
@@ -156,40 +156,39 @@ const ProfilePekerjaHire = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-12" style={{ marginTop: 45 }}>
-                                        <h4>{users.pekerja_name}</h4>
+                                    <div className="col-md-12" style={{ marginTop: 45, display: "flex", justifyContent: "center"  }}>
+                                        <h4 style={{textAlign:"center"}}>{users.pekerja_name}</h4>
                                     </div>
-                                    <div className="col-md-12" style={{ marginTop: 12 }}>
-                                        <p>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
+                                    <div className="col-md-12" style={{ marginTop: 12, display: "flex", justifyContent: "center"  }}>
+                                        <p style={{textAlign:'center'}}>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
                                             ? "Jobdesk"
                                             : users.pekerja_jobdesk}</p>
                                     </div>
-                                    <div className="col-md-12">
+                                    <div className="col-md-12" style={{marginTop: -16,display: "flex", justifyContent: "center" }}>
                                         <p style={{ color: "grey" }}>
                                             {users.pekerja_domisili == "null" || users.pekerja_domisili == null || users.pekerja_domisili == "undefined" || users.pekerja_domisili == undefined
                                             ? "Domisili"
                                             : users.pekerja_domisili}
                                             </p>
                                     </div>
-                                    <div className="col-md-12">
-                                        <p>
+                                    <div className="col-md-12" style={{marginTop: 1,display: "flex", justifyContent: "center" }}>
+                                        <p style={{textAlign:'justify'}}>
                                         {users.pekerja_deskripsi == "null" || users.pekerja_deskripsi == null || users.pekerja_deskripsi == "undefined" || users.pekerja_deskripsi == undefined
                                             ? "Deskripsi"
                                             : users.pekerja_deskripsi}
                                             </p>
                                     </div>
-
                                     <div className="col-md-4 " />
-                                    <div className="col-md-12 " style={{ marginTop: 20 }}>
-                                        <h5>Skill</h5>
-                                        <div style={{ display: 'flex', flexWrap: 'wrap' }} className=''>
+                                    <div className="col-md-12 " style={{ marginTop: 20,}}>
+                                        <h5 style={{textAlign:"center"}}>Skill</h5>
+                                        <div style={{ display: "flex", justifyContent: "center", flexWrap: 'wrap' }} className=''>
                                             {skill.map((skills, index) => (
                                                 <div
                                                     className="skill-item"
                                                     key={index}
                                                     style={{
                                                         width: 'auto',
-                                                        backgroundColor: "orange",
+                                                        backgroundColor: "#FFA07A",
                                                         color: 'white',
                                                         borderRadius: 15,
                                                         display: "flex",
@@ -205,19 +204,17 @@ const ProfilePekerjaHire = () => {
                                         </div>
                                     </div>
 
-                                    <div className="col-md-12" style={{ marginTop: 40 }}>
-                                        <div style={{ display: "flex", marginTop: 20 }}>
-                                            {users && (
-                                                <div>
-                                                    <Image src={mail} />
-                                                    <img src="../assetes/img/profilepekerja/mail.png" alt="" />
-                                                </div>
-                                            )}
-                                            {users && (
-                                                <div style={{ marginLeft: 10 }}>
-                                                    <p>{users.pekerja_email}</p>
-                                                </div>
-                                            )}
+                                    <div className="col-md-12" style={{ marginTop: 40}}>
+                                        <div style={{  marginTop: 20, display: "flex", justifyContent: "center"  }}>
+                                            <div>
+                                                <Image
+                                                    src={mail}
+                                                />
+                                                <img src="../assetes/img/profilepekerja/mail.png" alt="" />
+                                            </div>
+                                            <div style={{ marginLeft: 10 }}>
+                                                <p>{users.pekerja_email}</p>
+                                            </div>
                                         </div>
 
                                         {/* <div style={{ display: "flex", marginTop: 20 }}>
