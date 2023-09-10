@@ -30,31 +30,27 @@ const RegisterPekerja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`https://hire-job-backend.vercel.app/pekerja/register`, data)
-        .then((res) => {
-          if (res.data.status === "success") {
-            Swal.fire("Register Success", "Your account has been register", "success")
-              .then((result) => {
-                router.push("/loginpekerja");
-                console.log(res);
-                localStorage.setItem('token', res.data.data.token)
-              })
-              .catch((err) => {
-                console.log(res.data);
-              });
-          } else {
-            console.log(res.data.message);
-            Swal.fire("Login Error", res.data.message, "error");
-          }
-
-          // console.log(res);
-          //   alert("Register success")
-          //   localStorage.setItem('token', res.data.data.token)
-        })
-        .catch((err) => {
-            alert(err);
-        })
-      }
+    axios.post(`http://localhost:7474/pekerja/register`, data)
+      .then((res) => {
+        if (res.data.status === "success") {
+          Swal.fire("Register Success", "Your account has been registered. Check your email for verification.", "success")
+            .then((result) => {
+              router.push("/loginpekerja");
+              console.log(res);
+              localStorage.setItem('token', res.data.data.token)
+            })
+            .catch((err) => {
+              console.log(res.data);
+            });
+        } else {
+          console.log(res.data.message);
+          Swal.fire("Registration Error", res.data.message, "error");
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 
   return (
     <>

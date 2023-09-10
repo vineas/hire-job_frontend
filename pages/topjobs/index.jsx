@@ -13,6 +13,8 @@ import Link from 'next/link'
 import defaultProfile from '../../assets/img/user_default.jpeg'
 import { useSelector } from 'react-redux'
 import { NewtonsCradle } from '@uiball/loaders'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const TopJobs = () => {
@@ -29,12 +31,12 @@ const TopJobs = () => {
     useEffect(() => {
         axios.get(`https://hire-job-backend.vercel.app/pekerja/profile`)
             .then((res) => {
+                setIsLoading(false);
                 setUsers(res.data.data);
             })
             .catch((err) => {
                 console.log(err);
             });
-        setIsLoading(false);
     }, []);
 
     useEffect(() => {
@@ -149,20 +151,19 @@ const TopJobs = () => {
                     style={{ marginTop: 2, borderRadius: 10, padding: "20px 10px 20px 10px" }}>
                     <div className="col-md-12 " style={{ borderRadius: 15, padding: "0px 30px 20px 30px" }}>
                         {isLoading ? (
-                            <div style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>
-                                <NewtonsCradle size={40} speed={1.4} color="black" />
-                            </div>
-                        ) : (users
-                            .filter((user) => {
-                                const searchTerm = search.toLowerCase();
-                                return (
-                                    searchTerm === "" ||
-                                    user.pekerja_name.toLowerCase().includes(searchTerm) ||
-                                    user.pekerja_jobdesk.toLowerCase().includes(searchTerm) ||
-                                    user.pekerja_domisili.toLowerCase().includes(searchTerm) ||
-                                    user.skill_names.some((skill) => (skill ? skill : '').toLowerCase().includes(searchTerm))
-                                );
-                            })
+                            <Skeleton variant="rounded" width={'100%'} height={220} />
+                        ) : (
+                            users
+                                .filter((user) => {
+                                    const searchTerm = search ? search.toLowerCase() : ''; // Pastikan search tidak null
+                                    return (
+                                        searchTerm === "" ||
+                                        (user.pekerja_name && user.pekerja_name.toLowerCase().includes(searchTerm)) ||
+                                        (user.pekerja_jobdesk && user.pekerja_jobdesk.toLowerCase().includes(searchTerm)) ||
+                                        (user.pekerja_domisili && user.pekerja_domisili.toLowerCase().includes(searchTerm)) ||
+                                        (user.skill_names && user.skill_names.some((skill) => (skill ? skill.toLowerCase().includes(searchTerm) : false)))
+                                    );
+                                })
                             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                             .map((user) => (
                                 <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>

@@ -26,18 +26,22 @@ const LoginPekerja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`https://hire-job-backend.vercel.app/pekerja/login`, data)
+    axios.post(`http://localhost:7474/pekerja/login`, data)
       .then((res) => {
         if (res.data.status === "success") {
-          Swal.fire("Login Success", "Your account Success Login", "success")
-            .then((result) => {
-              localStorage.setItem("pekerja_id", res.data.data.pekerja_id);
-              localStorage.setItem('token', res.data.data.token_user)      
-              router.push("/");
-            })
-            .catch((err) => {
-              console.log(res.data);
-            });
+          if (res.data.data.verify != "true") {
+            Swal.fire("Login Error", "Please verify your email first", "error");
+          } else {
+            Swal.fire("Login Success", "Your account Success Login", "success")
+              .then((result) => {
+                localStorage.setItem("pekerja_id", res.data.data.pekerja_id);
+                localStorage.setItem('token', res.data.data.token_user);
+                router.push("/");
+              })
+              .catch((err) => {
+                console.log(res.data);
+              });
+          }
         } else {
           console.log(res.data.message);
           Swal.fire("Login Error", res.data.message, "error");

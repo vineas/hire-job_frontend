@@ -13,6 +13,8 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { v4 as uuidv4 } from 'uuid';
 import TopJobs from '../topjobs'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProfilePekerjaHire = () => {
     const router = useRouter();
@@ -22,6 +24,7 @@ const ProfilePekerjaHire = () => {
     const [pengalaman, setPengalaman] = useState([]);
     const [portofolio, setPortofolio] = useState([]);
     const [getid, setGetId] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [pengalamanKerja, setPengalamanKerja] = useState({
         posisi: "",
         nama_perusahaan: "",
@@ -36,6 +39,7 @@ const ProfilePekerjaHire = () => {
             axios.get(`http://hire-job-backend.vercel.app/pengalaman/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -48,6 +52,7 @@ const ProfilePekerjaHire = () => {
             axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -60,6 +65,7 @@ const ProfilePekerjaHire = () => {
             axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${pekerja_id}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -72,6 +78,7 @@ const ProfilePekerjaHire = () => {
             axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
+                    setIsLoading(false);
                 }, [])
                 .catch((err) => {
                     console.log(err);
@@ -144,10 +151,14 @@ const ProfilePekerjaHire = () => {
                                             <div>
                                                 <Image
                                                     className='profile-photo'
-                                                    src={users.pekerja_photo == "null" || users.pekerja_photo == null || users.pekerja_photo == "undefined" || users.pekerja_photo == undefined
+                                                    src={isLoading ? (
+                                                        <Skeleton />
+                                                    // <div style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>
+                                                    // </div>
+                                                ) : (users.pekerja_photo == "null" || users.pekerja_photo == null || users.pekerja_photo == "undefined" || users.pekerja_photo == undefined
                                                         ? defaultProfile
-                                                        : users.pekerja_photo
-                                                    }
+                                                        : users.pekerja_photo 
+                                                        )}
                                                     alt="Pekerja Photo"
                                                     width={150}
                                                     height={150}
