@@ -26,18 +26,22 @@ const LoginPerekrut = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://hire-job-backend.vercel.app/perekrut/login`, data)
-        .then((res) => {
+        axios.post(`http://localhost:7474/perekrut/login`, data)
+          .then((res) => {
             if (res.data.status === "success") {
-              Swal.fire("Login Success", "Your account Success Login", "success")
-                .then((result) => {
-                  localStorage.setItem("perekrut_id", res.data.data.perekrut_id);
-                  localStorage.setItem('token', res.data.data.token_user)      
-                  router.push("/");
-                })
-                .catch((err) => {
-                  console.log(res.data);
-                });
+              if (res.data.data.verify != "true") {
+                Swal.fire("Login Error", "Please verify your email first", "error");
+              } else {
+                Swal.fire("Login Success", "Your account Success Login", "success")
+                  .then((result) => {
+                    localStorage.setItem("perekrut_id", res.data.data.perekrut_id);
+                    localStorage.setItem('token', res.data.data.token);
+                    router.push("/");
+                  })
+                  .catch((err) => {
+                    console.log(res.data);
+                  });
+              }
             } else {
               console.log(res.data.message);
               Swal.fire("Login Error", res.data.message, "error");
@@ -46,7 +50,7 @@ const LoginPerekrut = () => {
           .catch((err) => {
             alert(err);
           })
-    }
+      }
 
 
     return (

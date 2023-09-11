@@ -35,7 +35,7 @@ const LoginPekerja = () => {
             Swal.fire("Login Success", "Your account Success Login", "success")
               .then((result) => {
                 localStorage.setItem("pekerja_id", res.data.data.pekerja_id);
-                localStorage.setItem('token', res.data.data.token_user);
+                localStorage.setItem('token', res.data.data.token);
                 router.push("/");
               })
               .catch((err) => {

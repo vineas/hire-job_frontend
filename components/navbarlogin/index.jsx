@@ -41,7 +41,7 @@ const NavbarLogin = () => {
                             <a className="navbar-brand" href="#">
                                 <Image
                                     src={logo}
-                                    alt=""
+                                    alt="photo"
                                 />
                             </a>
                         </div>
@@ -98,7 +98,7 @@ const NavbarLogin = () => {
                             {/* <a className="navbar-brand" href="#"> */}
                             <Image
                                 src={logo}
-                                alt=""
+                                alt="photo"
                             />
                             {/* </a> */}
                         </Link>

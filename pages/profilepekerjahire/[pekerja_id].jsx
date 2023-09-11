@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import defaultProfile from '../../assets/img/user_default.jpeg'
-
 import mail from '../../assets/img/profilepekerja/mail.png'
-import porto from '../../assets/img/pekerjaprofileupdate/porto.png'
 import React, { useEffect, useState } from 'react'
 import NavbarLogin from '../../components/navbarlogin'
 import Image from 'next/image'
@@ -11,10 +9,9 @@ import Footer from '../../components/footer'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { v4 as uuidv4 } from 'uuid';
-import TopJobs from '../topjobs'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import ModalHiring from '../../components/modalhiring'
 
 const ProfilePekerjaHire = () => {
     const router = useRouter();
@@ -153,12 +150,12 @@ const ProfilePekerjaHire = () => {
                                                     className='profile-photo'
                                                     src={isLoading ? (
                                                         <Skeleton />
-                                                    // <div style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>
-                                                    // </div>
-                                                ) : (users.pekerja_photo == "null" || users.pekerja_photo == null || users.pekerja_photo == "undefined" || users.pekerja_photo == undefined
+                                                        // <div style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>
+                                                        // </div>
+                                                    ) : (users.pekerja_photo == "null" || users.pekerja_photo == null || users.pekerja_photo == "undefined" || users.pekerja_photo == undefined
                                                         ? defaultProfile
-                                                        : users.pekerja_photo 
-                                                        )}
+                                                        : users.pekerja_photo
+                                                    )}
                                                     alt="Pekerja Photo"
                                                     width={150}
                                                     height={150}
@@ -167,31 +164,31 @@ const ProfilePekerjaHire = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-12" style={{ marginTop: 45, display: "flex", justifyContent: "center"  }}>
-                                        <h4 style={{textAlign:"center"}}>{users.pekerja_name}</h4>
+                                    <div className="col-md-12" style={{ marginTop: 45, display: "flex", justifyContent: "center" }}>
+                                        <h4 style={{ textAlign: "center" }}>{users.pekerja_name}</h4>
                                     </div>
-                                    <div className="col-md-12" style={{ marginTop: 12, display: "flex", justifyContent: "center"  }}>
-                                        <p style={{textAlign:'center'}}>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
+                                    <div className="col-md-12" style={{ marginTop: 12, display: "flex", justifyContent: "center" }}>
+                                        <p style={{ textAlign: 'center' }}>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
                                             ? "Jobdesk"
                                             : users.pekerja_jobdesk}</p>
                                     </div>
-                                    <div className="col-md-12" style={{marginTop: -16,display: "flex", justifyContent: "center" }}>
+                                    <div className="col-md-12" style={{ marginTop: -16, display: "flex", justifyContent: "center" }}>
                                         <p style={{ color: "grey" }}>
                                             {users.pekerja_domisili == "null" || users.pekerja_domisili == null || users.pekerja_domisili == "undefined" || users.pekerja_domisili == undefined
-                                            ? "Domisili"
-                                            : users.pekerja_domisili}
-                                            </p>
+                                                ? "Domisili"
+                                                : users.pekerja_domisili}
+                                        </p>
                                     </div>
-                                    <div className="col-md-12" style={{marginTop: 1,display: "flex", justifyContent: "center" }}>
-                                        <p style={{textAlign:'justify'}}>
-                                        {users.pekerja_deskripsi == "null" || users.pekerja_deskripsi == null || users.pekerja_deskripsi == "undefined" || users.pekerja_deskripsi == undefined
-                                            ? "Deskripsi"
-                                            : users.pekerja_deskripsi}
-                                            </p>
+                                    <div className="col-md-12" style={{ marginTop: 1, display: "flex", justifyContent: "center" }}>
+                                        <p style={{ textAlign: 'justify' }}>
+                                            {users.pekerja_deskripsi == "null" || users.pekerja_deskripsi == null || users.pekerja_deskripsi == "undefined" || users.pekerja_deskripsi == undefined
+                                                ? "Deskripsi"
+                                                : users.pekerja_deskripsi}
+                                        </p>
                                     </div>
                                     <div className="col-md-4 " />
-                                    <div className="col-md-12 " style={{ marginTop: 20,}}>
-                                        <h5 style={{textAlign:"center"}}>Skill</h5>
+                                    <div className="col-md-12 " style={{ marginTop: 20, }}>
+                                        <h5 style={{ textAlign: "center" }}>Skill</h5>
                                         <div style={{ display: "flex", justifyContent: "center", flexWrap: 'wrap' }} className=''>
                                             {skill.map((skills, index) => (
                                                 <div
@@ -215,13 +212,12 @@ const ProfilePekerjaHire = () => {
                                         </div>
                                     </div>
 
-                                    <div className="col-md-12" style={{ marginTop: 40}}>
-                                        <div style={{  marginTop: 20, display: "flex", justifyContent: "center"  }}>
+                                    <div className="col-md-12" style={{ marginTop: 40 }}>
+                                        <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
                                             <div>
                                                 <Image
                                                     src={mail}
                                                 />
-                                                <img src="../assetes/img/profilepekerja/mail.png" alt="" />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
                                                 <p>{users.pekerja_email}</p>
@@ -232,7 +228,7 @@ const ProfilePekerjaHire = () => {
                                             <div>
                                                 <img
                                                     src="../assetes/img/profilepekerja/instagram.png"
-                                                    alt=""
+                                                    alt="photo"
                                                 />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
@@ -241,7 +237,7 @@ const ProfilePekerjaHire = () => {
                                         </div>
                                         <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
-                                                <img src="../assetes/img/profilepekerja/github.png" alt="" />
+                                                <img src="../assetes/img/profilepekerja/github.png" alt="photo" />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
                                                 <p>@markomatdev</p>
@@ -249,14 +245,19 @@ const ProfilePekerjaHire = () => {
                                         </div>
                                         <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
-                                                <img src="../assetes/img/profilepekerja/gitlab.png" alt="" />
+                                                <img src="../assetes/img/profilepekerja/gitlab.png" alt="photo" />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
                                                 <p>@markomat_dev</p>
                                             </div>
                                         </div> */}
                                     </div>
-                                    <div className="col-md-12" style={{ marginTop: 30 }}>
+                                    <ModalHiring
+                                        pekerja_id={users.pekerja_id}
+                                        pekerja_name={users.pekerja_name}
+                                        pekerja_email={users.pekerja_email}
+                                    />
+                                    {/* <div className="col-md-12" style={{ marginTop: 30 }}>
                                         <Link href='#'>
                                             <button
                                                 type="button"
@@ -269,7 +270,7 @@ const ProfilePekerjaHire = () => {
                                                 Hire
                                             </button>
                                         </Link>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </section>

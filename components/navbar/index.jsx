@@ -29,7 +29,7 @@ const Navbar = () => {
                             {/* <a className="navbar-brand" href="#"> */}
                                 <Image
                                     src={logo}
-                                    alt=""
+                                    alt="photo"
                                 />
                             {/* </a> */}
                         </Link>

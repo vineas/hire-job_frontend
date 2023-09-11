@@ -39,7 +39,7 @@ const ModalUpdate = ({ pengalaman_kerja_id, posisi, nama_perusahaan, dari, sampa
 
     return (
         <>
-            <button type="button" className="btn btn-warning" style={{ marginLeft: 10, color: "white" }} onClick={handleShow}
+            <button type="button" className="btn btn-warning" onClick={handleShow} style={{ marginLeft: 10, color: "white" }} 
             >
                 Edit
             </button>

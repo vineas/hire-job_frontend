@@ -32,31 +32,27 @@ const RegisterPerekrut = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://hire-job-backend.vercel.app/perekrut/register`, data)
-            .then((res) => {
-              if (res.data.status === "success") {
-                Swal.fire("Register Success", "Your account has been register", "success")
-                  .then((result) => {
-                    router.push("/loginperekrut");
-                    console.log(res);
-                    localStorage.setItem('token', res.data.data.token)
-                  })
-                  .catch((err) => {
-                    console.log(res.data);
-                  });
-              } else {
-                console.log(res.data.message);
-                Swal.fire("Login Error", res.data.message, "error");
-              }
-    
-              // console.log(res);
-              //   alert("Register success")
-              //   localStorage.setItem('token', res.data.data.token)
-            })
-            .catch((err) => {
-                alert(err);
-            })
-          }
+        axios.post(`http://localhost:7474/perekrut/register`, data)
+          .then((res) => {
+            if (res.data.status === "success") {
+              Swal.fire("Register Success", "Your account has been registered. Check your email for verification.", "success")
+                .then((result) => {
+                  router.push("/loginperekrut");
+                  console.log(res);
+                  localStorage.setItem('token', res.data.data.token)
+                })
+                .catch((err) => {
+                  console.log(res.data);
+                });
+            } else {
+              console.log(res.data.message);
+              Swal.fire("Registration Error", res.data.message, "error");
+            }
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
 
 
   return (

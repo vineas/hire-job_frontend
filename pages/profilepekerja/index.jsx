@@ -224,7 +224,7 @@ const ProfilePekerja = () => {
                                                         <Image
                                                             src={mail}
                                                         />
-                                                        <img src="../assetes/img/profilepekerja/mail.png" alt="" />
+                                                        {/* <img src="../assetes/img/profilepekerja/mail.png" alt="photo" /> */}
                                                     </div>
                                                     <div style={{ marginLeft: 10 }}>
                                                         <p>{users.pekerja_email}</p>
@@ -234,7 +234,7 @@ const ProfilePekerja = () => {
                                             <div>
                                                 <img
                                                     src="../assetes/img/profilepekerja/instagram.png"
-                                                    alt=""
+                                                    alt="photo"
                                                 />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
@@ -243,7 +243,7 @@ const ProfilePekerja = () => {
                                         </div>
                                         <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
-                                                <img src="../assetes/img/profilepekerja/github.png" alt="" />
+                                                <img src="../assetes/img/profilepekerja/github.png" alt="photo" />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
                                                 <p>@markomatdev</p>
@@ -251,7 +251,7 @@ const ProfilePekerja = () => {
                                         </div>
                                         <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
-                                                <img src="../assetes/img/profilepekerja/gitlab.png" alt="" />
+                                                <img src="../assetes/img/profilepekerja/gitlab.png" alt="photo" />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
                                                 <p>@markomat_dev</p>
