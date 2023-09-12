@@ -14,7 +14,7 @@ import defaultProfile from '../../assets/img/user_default.jpeg'
 import { useSelector } from 'react-redux'
 
 export async function getStaticProps() {
-    const res = await axios.get(`https://hire-job-backend.vercel.app/pekerja/profieprofile`);
+    const res = await axios.get(`https://hire-job-backend.vercel.app/pekerja/profile`);
   return {
     props: { pekerja: res.data.data },
   };
