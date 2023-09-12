@@ -26,7 +26,7 @@ const LoginPerekrut = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:7474/perekrut/login`, data)
+        axios.post(`https://hire-job-backend.vercel.app/perekrut/login`, data)
           .then((res) => {
             if (res.data.status === "success") {
               if (res.data.data.verify != "true") {

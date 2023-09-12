@@ -26,7 +26,7 @@ const LoginPekerja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:7474/pekerja/login`, data)
+    axios.post(`https://hire-job-backend.vercel.app/pekerja/login`, data)
       .then((res) => {
         if (res.data.status === "success") {
           if (res.data.data.verify != "true") {

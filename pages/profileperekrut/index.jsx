@@ -28,6 +28,7 @@ const ProfilePerekrut = () => {
         } else {
             setGetId(storedId);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -41,6 +42,7 @@ const ProfilePerekrut = () => {
                     console.log(err);
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getid]);
 
     return (
@@ -140,6 +142,7 @@ const ProfilePerekrut = () => {
                                         <div>
                                             <Image
                                                 src={mail}
+                                                alt='mail'
                                             />
                                         </div>
                                         <div style={{ marginLeft: 10 }}>

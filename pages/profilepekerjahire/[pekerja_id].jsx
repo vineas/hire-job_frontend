@@ -42,6 +42,7 @@ const ProfilePekerjaHire = () => {
                     console.log(err);
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pekerja_id]);
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const ProfilePekerjaHire = () => {
                     console.log(err);
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pekerja_id]);
 
     useEffect(() => {
@@ -68,6 +70,7 @@ const ProfilePekerjaHire = () => {
                     console.log(err);
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pekerja_id]);
 
     useEffect(() => {
@@ -82,6 +85,7 @@ const ProfilePekerjaHire = () => {
                 });
 
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pekerja_id]);
 
     if (!users) {
@@ -217,6 +221,7 @@ const ProfilePekerjaHire = () => {
                                             <div>
                                                 <Image
                                                     src={mail}
+                                                    alt='photo'
                                                 />
                                             </div>
                                             <div style={{ marginLeft: 10 }}>
@@ -294,7 +299,7 @@ const ProfilePekerjaHire = () => {
                                             <div key={porto.portofolio_id} className="col-md-4 mb-3">
                                                 <Link href={porto.link_repository}>
                                                     <div>
-                                                        <Image src={porto.portofolio_image} width={215} height={140} />
+                                                        <Image src={porto.portofolio_image} width={215} height={140} alt='photo' />
                                                     </div>
                                                     <div
                                                         style={{
@@ -339,6 +344,8 @@ const ProfilePekerjaHire = () => {
                 </main>
                 <Footer />
             </div>
+            <Script src="https://code.jquery.com/jquery-3.6.0.min.js"></Script>
+            <Script src="https://code.jquery.com/jquery-3.6.0.min.js"></Script>
             <Script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></Script>
             <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></Script>
 

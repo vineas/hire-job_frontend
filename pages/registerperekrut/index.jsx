@@ -32,7 +32,7 @@ const RegisterPerekrut = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:7474/perekrut/register`, data)
+        axios.post(`https://hire-job-backend.vercel.app/perekrut/register`, data)
           .then((res) => {
             if (res.data.status === "success") {
               Swal.fire("Register Success", "Your account has been registered. Check your email for verification.", "success")

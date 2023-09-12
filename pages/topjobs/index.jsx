@@ -39,18 +39,18 @@ const TopJobs = () => {
             });
     }, []);
 
-    useEffect(() => {
-        if (pekerja_id !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
-                .then((res) => {
-                    setSkill(res.data.data);
-                }, [])
-                .catch((err) => {
-                    console.log(err);
-                });
+    // useEffect(() => {
+    //     if (pekerja_id !== null) {
+    //         axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
+    //             .then((res) => {
+    //                 setSkill(res.data.data);
+    //             }, [])
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
 
-        }
-    }, [pekerja_id]);
+    //     }
+    // }, [pekerja_id]);
 
     return (
         <>
@@ -104,7 +104,7 @@ const TopJobs = () => {
 
                         />
                         <div className="input-group-append" id="button-addon4">
-                            <button
+                            {/* <button
                                 className="btn btn-outline-secondary"
                                 type="button"
                                 data-toggle="dropdown"
@@ -128,7 +128,7 @@ const TopJobs = () => {
                                 <a className="dropdown-item" href="#">
                                     Sort by fulltime
                                 </a>
-                            </div>
+                            </div> */}
                             <button
                                 className="btn btn-outline-secondary"
                                 type="button"
@@ -164,75 +164,75 @@ const TopJobs = () => {
                                         (user.skill_names && user.skill_names.some((skill) => (skill ? skill.toLowerCase().includes(searchTerm) : false)))
                                     );
                                 })
-                            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-                            .map((user) => (
-                                <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>
-                                    <div
-                                        className="col-md-2"
-                                        style={{ display: "flex", alignItems: "center" }}
-                                    >
-                                        <Image
-                                            className='profile-photo'
-                                            src={user.pekerja_photo == "null" || user.pekerja_photo == null || user.pekerja_photo == "undefined" || user.pekerja_photo == undefined
-                                                ? defaultProfile
-                                                : user.pekerja_photo
-                                            }
-                                            alt="Pekerja Photo"
-                                            width={140}
-                                            height={140}
-                                            style={{ marginTop: 10, borderRadius: 100 }}
-                                        />
-                                    </div>
+                                .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                                .map((user) => (
+                                    <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>
+                                        <div
+                                            className="col-md-2"
+                                            style={{ display: "flex", alignItems: "center" }}
+                                        >
+                                            <Image
+                                                className='profile-photo'
+                                                src={user.pekerja_photo == "null" || user.pekerja_photo == null || user.pekerja_photo == "undefined" || user.pekerja_photo == undefined
+                                                    ? defaultProfile
+                                                    : user.pekerja_photo
+                                                }
+                                                alt="Pekerja Photo"
+                                                width={140}
+                                                height={140}
+                                                style={{ marginTop: 10, borderRadius: 100 }}
+                                            />
+                                        </div>
 
-                                    <div className="col-md-6">
-                                        <div>
-                                            <h4>{user.pekerja_name}</h4>
-                                        </div>
-                                        <div>
-                                            <p>{user.pekerja_domisili == "null" || user.pekerja_jobdesk == null || user.pekerja_jobdesk == "undefined" || user.pekerja_jobdesk == undefined
-                                                ? "Jobdesk"
-                                                : user.pekerja_jobdesk}</p>
-                                        </div>
-                                        <div>
-                                            <p>{user.pekerja_domisili == "null" || user.pekerja_domisili == null || user.pekerja_domisili == "undefined" || user.pekerja_domisili == undefined
-                                                ? "Domisili"
-                                                : user.pekerja_domisili}</p>
-                                        </div>
-                                        <div>
-                                            <strong>Skills: {user.skill_names.join(', ')}</strong>
+                                        <div className="col-md-6">
                                             <div>
+                                                <h4>{user.pekerja_name}</h4>
+                                            </div>
+                                            <div>
+                                                <p>{user.pekerja_domisili == "null" || user.pekerja_jobdesk == null || user.pekerja_jobdesk == "undefined" || user.pekerja_jobdesk == undefined
+                                                    ? "Jobdesk"
+                                                    : user.pekerja_jobdesk}</p>
+                                            </div>
+                                            <div>
+                                                <p>{user.pekerja_domisili == "null" || user.pekerja_domisili == null || user.pekerja_domisili == "undefined" || user.pekerja_domisili == undefined
+                                                    ? "Domisili"
+                                                    : user.pekerja_domisili}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Skills: {user.skill_names.join(', ')}</strong>
+                                                <div>
 
+                                                </div>
                                             </div>
                                         </div>
+                                        <div
+                                            className="col-md-4"
+                                            style={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "end"
+                                            }}
+                                        >
+                                            <Link key={user.pekerja_id} href={`/profilepekerjahire/${user.pekerja_id}`}>
+                                                <button
+                                                    className="btn btn-outline-secondary"
+                                                    type="button"
+                                                    style={{
+                                                        height: "30%",
+                                                        width: "100%",
+                                                        padding: "0px 30px 0px 30px",
+                                                        backgroundColor: "#5E50A1",
+                                                        color: "white",
+                                                    }}
+                                                >
+                                                    Lihat profile
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <hr />
                                     </div>
-                                    <div
-                                        className="col-md-4"
-                                        style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "end"
-                                        }}
-                                    >
-                                        <Link key={user.pekerja_id} href={`/profilepekerjahire/${user.pekerja_id}`}>
-                                            <button
-                                                className="btn btn-outline-secondary"
-                                                type="button"
-                                                style={{
-                                                    height: "30%",
-                                                    width: "100%",
-                                                    padding: "0px 30px 0px 30px",
-                                                    backgroundColor: "#5E50A1",
-                                                    color: "white",
-                                                }}
-                                            >
-                                                Lihat profile
-                                            </button>
-                                        </Link>
-                                    </div>
-                                    <hr />
-                                </div>
 
-                            ))
+                                ))
                         )}
 
                     </div>
@@ -258,6 +258,7 @@ const TopJobs = () => {
             </main>
             <Footer />
 
+            <Script src="https://code.jquery.com/jquery-3.6.0.min.js"></Script>
             <Script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></Script>
             <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></Script>
 

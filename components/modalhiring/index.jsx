@@ -24,7 +24,7 @@ const ModalHiring = ({ pekerja_id, pekerja_name, pekerja_email }) => {
       useEffect(() => {
         if (router.isReady) {
           axios
-            .get(`http://localhost:7474/perekrut/profile/${recruiter}`)
+            .get(`https://hire-job-backend.vercel.app/perekrut/profile/${recruiter}`)
             .then((response) => {
               console.log(response.data.data[0].perekrut_perusahaan);
               console.log(response.data.data[0]);
@@ -65,7 +65,7 @@ const ModalHiring = ({ pekerja_id, pekerja_name, pekerja_email }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const hiring = await axios.post(`http://localhost:7474/hiring`,
+            const hiring = await axios.post(`https://hire-job-backend.vercel.app/hiring`,
                 data
             );
             const result = hiring.data.data;
