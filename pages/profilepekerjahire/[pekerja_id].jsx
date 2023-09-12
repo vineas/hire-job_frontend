@@ -116,12 +116,11 @@ const ProfilePekerjaHire = () => {
                     />
                     <style>
                         .profile-photo{"{"}
-                        width: "130%"
+                        width: &ldquo;130%&rdquo;
                         {"}"}
                         @media screen and (max-width: 576px){"{"}
-                        width: "100%"
+                        width: &ldquo;100%&rdquo;
                         {"}"}
-
                     </style>
                 </>
             </Head>
@@ -319,8 +318,8 @@ const ProfilePekerjaHire = () => {
                                 <div className="col-md-12" style={{ paddingBottom: '24px' }}>
                                     <h3>Pengalaman kerja</h3>
                                     <hr />
-                                    {Array.isArray(pengalaman) && pengalaman.map((exp) => (
-                                        <div className='border' style={{ padding: '20px 20px 4px 20px', borderRadius: 10, marginTop: 10 }}>
+                                    {Array.isArray(pengalaman) && pengalaman.map((exp, index) => (
+                                        <div key={index} className='border' style={{ padding: '20px 20px 4px 20px', borderRadius: 10, marginTop: 10 }}>
                                             <div className="row">
                                                 <div className="col-md-7 ">
                                                     <h5>{exp.posisi}</h5>

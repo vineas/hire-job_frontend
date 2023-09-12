@@ -289,7 +289,7 @@ const ProfilePekerjaUpdate = () => {
                         crossOrigin="anonymous"
                     />
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></link>
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js" async></script>
                     <title>Profile Pekerja</title>
                     <style
                         dangerouslySetInnerHTML={{
@@ -300,12 +300,11 @@ const ProfilePekerjaUpdate = () => {
                     />
                     <style>
                         .profile-photo{"{"}
-                        width: "130%"
+                        width: &ldquo;130%&rdquo;
                         {"}"}
                         @media screen and (max-width: 576px){"{"}
-                        width: "100%"
+                        width: &ldquo;100%&rdquo;
                         {"}"}
-
                     </style>
                 </>
             </Head>
@@ -762,13 +761,14 @@ const ProfilePekerjaUpdate = () => {
                                     <h3>Portofolio</h3>
                                     <hr />
                                     {Array.isArray(portofolio) && portofolio.map((porto) => (
-                                        <div className="col-md-12" style={{ marginTop: 25 }}>
+                                        <div key={porto.portofolio_id} className="col-md-12" style={{ marginTop: 25 }}>
                                             <div className="row">
-                                                <div className="col-md-4 ">
+                                                <div className="col-md-4">
                                                     <Image
                                                         src={porto.portofolio_image}
                                                         width={215}
                                                         height={140}
+                                                        alt="photo"
                                                     />
                                                 </div>
                                                 <div className="col-md-5">
@@ -858,10 +858,10 @@ const ProfilePekerjaUpdate = () => {
                 </main>
                 <Footer />
             </div>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <Script src="https://code.jquery.com/jquery-3.6.0.min.js"></Script>
-            <Script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></Script>
-            <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></Script>
+            <Script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" async></Script>
+            <Script src="https://code.jquery.com/jquery-3.6.0.min.js" async></Script>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" async></Script>
+            <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" async></Script>
         </>
 
     )

@@ -88,9 +88,9 @@ const ProfilePekerja = () => {
             axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${getid}`)
                 .then((res) => {
                     // setTimeout(() => {
-                        // setLoading(false);
-                        setUsers(res.data.data[0]);
-                        console.log(res.data.data[0]);
+                    // setLoading(false);
+                    setUsers(res.data.data[0]);
+                    console.log(res.data.data[0]);
                     // }, 2000);
                 })
                 .catch((err) => {
@@ -124,12 +124,11 @@ const ProfilePekerja = () => {
                     />
                     <style>
                         .profile-photo{"{"}
-                        width: "130%"
+                        width: &ldquo;130%&rdquo;
                         {"}"}
                         @media screen and (max-width: 576px){"{"}
-                        width: "100%"
+                        width: &ldquo;100%&rdquo;
                         {"}"}
-
                     </style>
                 </>
             </Head>
@@ -137,105 +136,105 @@ const ProfilePekerja = () => {
             <div className="background-purple">
                 <main className="container">
                     <div className="row">
-                                <section className="col-md-4" style={{ marginTop: 40 }}>
+                        <section className="col-md-4" style={{ marginTop: 40 }}>
+                            <div
+                                className="border"
+                                style={{
+                                    borderRadius: 10,
+                                    width: "100%",
+                                    padding: "20px 15px 20px 15px",
+                                    backgroundColor: "white"
+                                }}
+                            >
+                                <div className="row"
+                                // style={{paddingLeft: 20,paddingRight: 30}}
+                                >
+                                    <div className="col-md-4 " />
                                     <div
-                                        className="border"
-                                        style={{
-                                            borderRadius: 10,
-                                            width: "100%",
-                                            padding: "20px 15px 20px 15px",
-                                            backgroundColor: "white"
-                                        }}
-                                    >
-                                        <div className="row"
-                                        // style={{paddingLeft: 20,paddingRight: 30}}
+                                        className="col-md-4 "
+                                        style={{ display: "flex", justifyContent: "center" }}>
+                                        <div
+                                            className="row"
+                                            style={{ display: "flex", justifyContent: "center" }}
                                         >
-                                            <div className="col-md-4 " />
-                                            <div
-                                                className="col-md-4 "
-                                                style={{ display: "flex", justifyContent: "center" }}>
+                                            <div>
+                                                {/* {users.pekerja_photo ? ( */}
+
+                                                <Image
+                                                    className='profile-photo'
+                                                    src={users.pekerja_photo == "undefined" || users.pekerja_photo == undefined || users.pekerja_photo == "null" || users.pekerja_photo == null
+                                                        ? defaultProfile
+                                                        : users.pekerja_photo
+                                                    }
+                                                    alt="Pekerja Photo"
+                                                    width={150}
+                                                    height={150}
+                                                    style={{ marginTop: 10, borderRadius: 100 }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12" style={{ marginTop: 45, display: "flex", justifyContent: "center" }}>
+                                        <h4 style={{ textAlign: "center" }}>{users.pekerja_name}</h4>
+                                    </div>
+                                    <div className="col-md-12" style={{ marginTop: 12, display: "flex", justifyContent: "center" }}>
+                                        <p style={{ textAlign: 'center' }}>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
+                                            ? "Jobdesk"
+                                            : users.pekerja_jobdesk}</p>
+                                    </div>
+                                    <div className="col-md-12" style={{ marginTop: -16, display: "flex", justifyContent: "center" }}>
+                                        <p style={{ color: "grey" }}>
+                                            {users.pekerja_domisili == "null" || users.pekerja_domisili == null || users.pekerja_domisili == "undefined" || users.pekerja_domisili == undefined
+                                                ? "Domisili"
+                                                : users.pekerja_domisili}
+                                        </p>
+                                    </div>
+                                    <div className="col-md-12" style={{ marginTop: 1, display: "flex", justifyContent: "center" }}>
+                                        <p style={{ textAlign: 'justify' }}>
+                                            {users.pekerja_deskripsi == "null" || users.pekerja_deskripsi == null || users.pekerja_deskripsi == "undefined" || users.pekerja_deskripsi == undefined
+                                                ? "Deskripsi"
+                                                : users.pekerja_deskripsi}
+                                        </p>
+                                    </div>
+                                    <div className="col-md-4 " />
+                                    <div className="col-md-12 " style={{ marginTop: 20, }}>
+                                        <h5 style={{ textAlign: "center" }}>Skill</h5>
+                                        <div style={{ display: "flex", justifyContent: "center", flexWrap: 'wrap' }} className=''>
+                                            {skill.map((skills, index) => (
                                                 <div
-                                                    className="row"
-                                                    style={{ display: "flex", justifyContent: "center" }}
+                                                    className="skill-item"
+                                                    key={index}
+                                                    style={{
+                                                        width: 'auto',
+                                                        backgroundColor: "#FFA07A",
+                                                        color: 'white',
+                                                        borderRadius: 15,
+                                                        display: "flex",
+                                                        justifyContent: "center",
+                                                        alignItems: 'center',
+                                                        margin: '6px 6px',
+                                                        padding: '10px'
+                                                    }}
                                                 >
-                                                    <div>
-                                                        {/* {users.pekerja_photo ? ( */}
+                                                    <p style={{ margin: 0 }}>{skills.skill_name}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
 
-                                                        <Image
-                                                            className='profile-photo'
-                                                            src={users.pekerja_photo == "undefined" || users.pekerja_photo == undefined || users.pekerja_photo == "null" || users.pekerja_photo == null
-                                                                ? defaultProfile
-                                                                : users.pekerja_photo
-                                                            }
-                                                            alt="Pekerja Photo"
-                                                            width={150}
-                                                            height={150}
-                                                            style={{ marginTop: 10, borderRadius: 100 }}
-                                                        />
-                                                    </div>
-                                                </div>
+                                    <div className="col-md-12" style={{ marginTop: 40 }}>
+                                        <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+                                            <div>
+                                                <Image
+                                                    src={mail}
+                                                />
+                                                {/* <img src="../assetes/img/profilepekerja/mail.png" alt="photo" /> */}
                                             </div>
-                                            <div className="col-md-12" style={{ marginTop: 45, display: "flex", justifyContent: "center" }}>
-                                                <h4 style={{ textAlign: "center" }}>{users.pekerja_name}</h4>
+                                            <div style={{ marginLeft: 10 }}>
+                                                <p>{users.pekerja_email}</p>
                                             </div>
-                                            <div className="col-md-12" style={{ marginTop: 12, display: "flex", justifyContent: "center" }}>
-                                                <p style={{ textAlign: 'center' }}>{users.pekerja_jobdesk == "null" || users.pekerja_jobdesk == null || users.pekerja_jobdesk == "undefined" || users.pekerja_jobdesk == undefined
-                                                    ? "Jobdesk"
-                                                    : users.pekerja_jobdesk}</p>
-                                            </div>
-                                            <div className="col-md-12" style={{ marginTop: -16, display: "flex", justifyContent: "center" }}>
-                                                <p style={{ color: "grey" }}>
-                                                    {users.pekerja_domisili == "null" || users.pekerja_domisili == null || users.pekerja_domisili == "undefined" || users.pekerja_domisili == undefined
-                                                        ? "Domisili"
-                                                        : users.pekerja_domisili}
-                                                </p>
-                                            </div>
-                                            <div className="col-md-12" style={{ marginTop: 1, display: "flex", justifyContent: "center" }}>
-                                                <p style={{ textAlign: 'justify' }}>
-                                                    {users.pekerja_deskripsi == "null" || users.pekerja_deskripsi == null || users.pekerja_deskripsi == "undefined" || users.pekerja_deskripsi == undefined
-                                                        ? "Deskripsi"
-                                                        : users.pekerja_deskripsi}
-                                                </p>
-                                            </div>
-                                            <div className="col-md-4 " />
-                                            <div className="col-md-12 " style={{ marginTop: 20, }}>
-                                                <h5 style={{ textAlign: "center" }}>Skill</h5>
-                                                <div style={{ display: "flex", justifyContent: "center", flexWrap: 'wrap' }} className=''>
-                                                    {skill.map((skills, index) => (
-                                                        <div
-                                                            className="skill-item"
-                                                            key={index}
-                                                            style={{
-                                                                width: 'auto',
-                                                                backgroundColor: "#FFA07A",
-                                                                color: 'white',
-                                                                borderRadius: 15,
-                                                                display: "flex",
-                                                                justifyContent: "center",
-                                                                alignItems: 'center',
-                                                                margin: '6px 6px',
-                                                                padding: '10px'
-                                                            }}
-                                                        >
-                                                            <p style={{ margin: 0 }}>{skills.skill_name}</p>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-
-                                            <div className="col-md-12" style={{ marginTop: 40 }}>
-                                                <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
-                                                    <div>
-                                                        <Image
-                                                            src={mail}
-                                                        />
-                                                        {/* <img src="../assetes/img/profilepekerja/mail.png" alt="photo" /> */}
-                                                    </div>
-                                                    <div style={{ marginLeft: 10 }}>
-                                                        <p>{users.pekerja_email}</p>
-                                                    </div>
-                                                </div>
-                                                {/* <div style={{ display: "flex", marginTop: 20 }}>
+                                        </div>
+                                        {/* <div style={{ display: "flex", marginTop: 20 }}>
                                             <div>
                                                 <img
                                                     src="../assetes/img/profilepekerja/instagram.png"
@@ -262,32 +261,32 @@ const ProfilePekerja = () => {
                                                 <p>@markomat_dev</p>
                                             </div>
                                         </div> */}
-                                            </div>
-                                            <div className="col-md-12" style={{ marginTop: 30 }}>
-                                                <Link href='/profilepekerjaupdate'>
-                                                    <button
-                                                        pekerja_id={users.pekerja_id}
-                                                        pekerja_photo={users.pekerja_photo}
-                                                        pekerja_name={users.pekerja_name}
-                                                        pekerja_jobdesk={users.pekerja_jobdesk}
-                                                        pekerja_domisili={users.pekerja_domisili}
-                                                        pekerja_tempat_kerja={users.pekerja_tempat_kerja}
-                                                        pekerja_deskripsi={users.pekerja_deskripsi}
-                                                        type="button"
-                                                        className="btn btn-warning"
-                                                        style={{
-                                                            color: "white",
-                                                            width: "100%",
-                                                            borderRadius: 12
-                                                        }}
-                                                    >
-                                                        Edit
-                                                    </button>
-                                                </Link>
-                                            </div>
-                                        </div>
                                     </div>
-                                </section>
+                                    <div className="col-md-12" style={{ marginTop: 30 }}>
+                                        <Link href='/profilepekerjaupdate'>
+                                            <button
+                                                pekerja_id={users.pekerja_id}
+                                                pekerja_photo={users.pekerja_photo}
+                                                pekerja_name={users.pekerja_name}
+                                                pekerja_jobdesk={users.pekerja_jobdesk}
+                                                pekerja_domisili={users.pekerja_domisili}
+                                                pekerja_tempat_kerja={users.pekerja_tempat_kerja}
+                                                pekerja_deskripsi={users.pekerja_deskripsi}
+                                                type="button"
+                                                className="btn btn-warning"
+                                                style={{
+                                                    color: "white",
+                                                    width: "100%",
+                                                    borderRadius: 12
+                                                }}
+                                            >
+                                                Edit
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <section className="col-md-8 " style={{ marginTop: 40 }}>
                             <div
                                 className="border"
@@ -308,7 +307,7 @@ const ProfilePekerja = () => {
                                             <div key={porto.portofolio_id} className="col-md-4 mb-3">
                                                 <Link href={porto.link_repository}>
                                                     <div>
-                                                        <Image src={porto.portofolio_image} width={215} height={140} />
+                                                        <Image src={porto.portofolio_image} width={215} height={140} alt="photo" />
                                                     </div>
                                                     <div
                                                         style={{
@@ -329,8 +328,8 @@ const ProfilePekerja = () => {
                                 <div className="col-md-12" style={{ paddingBottom: '24px' }}>
                                     <h3>Pengalaman kerja</h3>
                                     <hr />
-                                    {Array.isArray(pengalaman) && pengalaman.map((exp) => (
-                                        <div className='border' style={{ padding: '20px 20px 4px 20px', borderRadius: 10, marginTop: 10 }}>
+                                    {Array.isArray(pengalaman) && pengalaman.map((exp, index) => (
+                                        <div key={index} className='border' style={{ padding: '20px 20px 4px 20px', borderRadius: 10, marginTop: 10 }}>
                                             <div className="row">
                                                 <div className="col-md-7 ">
                                                     <h5>{exp.posisi}</h5>

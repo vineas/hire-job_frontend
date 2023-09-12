@@ -52,6 +52,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
         } else {
             setGetId(storedId);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -65,6 +66,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                     console.log(err);
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getid]);
 
     const handleSubmit = (e) => {
@@ -119,10 +121,10 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                     />
                     <style>
                         .profile-photo{"{"}
-                        width: "130%"
+                        width: &ldquo;130%&rdquo;
                         {"}"}
                         @media screen and (max-width: 576px){"{"}
-                        width: "100%"
+                        width: &ldquo;100%&rdquo;
                         {"}"}
 
                     </style>
