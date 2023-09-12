@@ -3,13 +3,13 @@
   <div align="center">
     <img height="150" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147830303457550416/Screenshot_120-removebg-preview.png" alt="peworld" border="0"/>
   </div>
-  <h3 align="center">Blanja</h3>
+  <h3 align="center">Peworld Hire Job</h3>
   <p align="center">
     <a href="https://github.com/vineas/hire-job_backend"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://blanja-react-beginner.vercel.app">View Demo</a>
+    <a href="https://hire-job-frontend.vercel.app">View Demo</a>
     ·
-    <a href="https://backend-expressjs-blanja-project.vercel.app/">Api Demo</a>
+    <a href="http://hire-job-backend.vercel.app">Api Demo</a>
   </p>
 </p>
 
@@ -27,11 +27,7 @@
 
   # About The Project
 
-Blanja is an E-commerce website project that aims to provide an easy and convenient online shopping experience for users in Indonesia. The site offers a wide range of products, including fashion, beauty, electronics, and food and beverages.
-
-To use Blanja's services, users only need to create an account and enter their payment details. After that, users can browse products, add them to their shopping cart, and choose their preferred payment method.
-
-With all the features and security provided, Blanja is expected to provide a safe, easy, and convenient online shopping experience for users across Indonesia.
+Hire Job is an innovative application designed to facilitate the interaction between two main types of users: job seekers and recruiters. This application provides an efficient solution in the world of recruitment with a focus on developing job seeker profiles and enabling recruiters to find candidates that match their company's needs.
 
 
 ## Built With
@@ -66,10 +62,10 @@ Follow this steps to run the server locally
 git clone https://github.com/vineas/hire-job_frontend
 ```
 
-2. Change directory to blanja-react_beginner
+2. Change directory to hire-job_frontend
 
 ```sh
-cd blanja-react_beginner
+cd hire-job_frontend
 ```
 
 3. Install all of the required modules
@@ -101,43 +97,60 @@ npm run build
 
 <table>
  <tr>
-    <td><img width="350px" src="./docs/readme/login.png" border="0" alt="Login" /></td>
-    <td> <img width="350px" src="./docs/readme/register.png" border="0"  alt="Register" /></td>
+    <td><img width="350px" src="./docs/readme/LoginPekerja.png" border="0" alt="Login" /></td>
+    <td><img width="350px" src="./docs/readme/RegisterPekerja.png" border="0"  alt="Register" /></td>
   </tr>
   <tr>
-    <td>Login</td>
-    <td>Register</td>
+    <td>Login Worker</td>
+    <td>Register Worker</td>
+  </tr>
+   <tr>
+    <td><img width="350px" src="./docs/readme/LoginPerekrut.png" border="0" alt="Login" /></td>
+    <td><img width="350px" src="./docs/readme/RegisterPerekrut.png" border="0"  alt="Register" /></td>
   </tr>
   <tr>
-    <td><img width="350px" src="./docs/readme/home.png" border="0" alt="Home Page" /></td>
-    <td><img width="350px" src="./docs/readme/Checkout.png" border="0" alt="Checkout" /> </td>
+    <td>Login Recruiter</td>
+    <td>Register Recruiter</td>
+  </tr>
+  <tr>
+    <td><img width="350px" src="./docs/readme/Home.png" border="0" alt="Home Page" /></td>
+    <td><img width="350px" src="./docs/readme/ProfilePekerjaEdit.png" border="0" alt="Edit Worker Profile" /> </td>
   </tr>
    <tr>
     <td>Home Page</td>
-    <td>Checkout List</td>
+    <td>Edit Worker Profile</td>
   </tr>
   <tr>
-    <td><img width="350px" src="./docs/readme/detail.png" border="0" alt="Detail Product" /></td>
-    <td><img width="350px" src="./docs/readme/profile.png" border="0" alt="Profile" /> </td>
+    <td><img width="350px" src="./docs/readme/ProfilePekerja.png" border="0" alt="Profile Pekerja" /></td>
+    <td><img width="350px" src="./docs/readme/TopJobs.png" border="0" alt="Pekerja Hiring" /> </td>
   </tr>
    <tr>
-    <td>Detail Product</td>
-    <td>Profile</td>
+    <td>Profile Worker</td>
+    <td>Top Jobs</td>
   </tr>
-    <!-- <tr>
-    <td><img width="350px" src="./docs/readme/hire.png" border="0" alt="Hire Worker" /></td>
-    <td><img width="350px" src="./docs/readme/notification.png" border="0" alt="Notification" /> </td>
+    <tr>
+    <td><img width="350px" src="./docs/readme/ProfilePekerjaHiring.png" border="0" alt="Profile" /> </td>
+    <td><img width="350px" src="./docs/readme/HiringWorker.png" border="0" alt="Detail Product" /></td>
   </tr>
    <tr>
-    <td>Worker Profile - Hire Worker</td>
-    <td>Notification</td>
-  </tr> -->
+    <td>Profile Worker Hire</td>
+    <td>Hiring Worker</td>
+  </tr>
+    <tr>
+    <td><img width="350px" src="./docs/readme/ProfilePerekrut.png" border="0" alt="Detail Product" /></td>
+    <td><img width="350px" src="./docs/readme/ProfilePerekrutEdit.png" border="0" alt="Profile" /> </td>
+  </tr>
+   <tr>
+    <td>Profile Recruiter</td>
+    <td>Edit Profile Recruiter</td>
+  </tr>
+    
 </table>
 
 ## Related Project
 
-:rocket: [`Backend Blanja`](https://github.com/vineas/hire-job_backend)
+:rocket: [`Backend Hirejob`](https://github.com/vineas/hire-job_backend)
 
-:rocket: [`Frontend Blanja`](https://github.com/vineas/hire-job_frontend)
+:rocket: [`Frontend Hirejob`](https://github.com/vineas/hire-job_frontend)
 
-:rocket: [`Demo Blanja`](https://blanja-react-beginner.vercel.app)
+:rocket: [`Demo Hirejob`](https://hire-job-frontend.vercel.app)

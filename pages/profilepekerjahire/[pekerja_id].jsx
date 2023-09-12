@@ -22,14 +22,14 @@ const ProfilePekerjaHire = () => {
     const [portofolio, setPortofolio] = useState([]);
     const [getid, setGetId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [pengalamanKerja, setPengalamanKerja] = useState({
-        posisi: "",
-        nama_perusahaan: "",
-        dari: "",
-        sampai: "",
-        deskripsi: "",
-        pekerja_id: "",
-    });
+    // const [pengalamanKerja, setPengalamanKerja] = useState({
+    //     posisi: "",
+    //     nama_perusahaan: "",
+    //     dari: "",
+    //     sampai: "",
+    //     deskripsi: "",
+    //     pekerja_id: "",
+    // });
 
     useEffect(() => {
         if (pekerja_id) {
