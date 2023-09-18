@@ -42,7 +42,7 @@ const ProfilePekerja = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pengalaman/pekerja/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pengalaman/pekerja/${getid}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                 }, [])
@@ -55,7 +55,7 @@ const ProfilePekerja = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/portofolio/pekerja/${getid}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])
@@ -69,7 +69,7 @@ const ProfilePekerja = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/skill/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/skill/${getid}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 }, [])
@@ -85,7 +85,7 @@ const ProfilePekerja = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/${getid}`)
                 .then((res) => {
                     // setTimeout(() => {
                     // setLoading(false);
@@ -128,7 +128,7 @@ const ProfilePekerja = () => {
                         {"}"}
                         @media screen and (max-width: 576px){"{"}
                         width: &ldquo;100%&rdquo;
-                        {"}"}
+                        {"}"} 
                     </style>
                 </>
             </Head>
@@ -263,15 +263,16 @@ const ProfilePekerja = () => {
                                         </div> */}
                                     </div>
                                     <div className="col-md-12" style={{ marginTop: 30 }}>
-                                        <Link href='/profilepekerjaupdate'>
+                                        <Link 
+                                        // href='/profilepekerjaupdate'
+                                         key={getid} href={`/profilepekerjaupdate/${getid}`}>
                                             <button
-                                                pekerja_id={users.pekerja_id}
-                                                pekerja_photo={users.pekerja_photo}
                                                 pekerja_name={users.pekerja_name}
                                                 pekerja_jobdesk={users.pekerja_jobdesk}
                                                 pekerja_domisili={users.pekerja_domisili}
                                                 pekerja_tempat_kerja={users.pekerja_tempat_kerja}
                                                 pekerja_deskripsi={users.pekerja_deskripsi}
+                                                getid={getid}
                                                 type="button"
                                                 className="btn btn-warning"
                                                 style={{

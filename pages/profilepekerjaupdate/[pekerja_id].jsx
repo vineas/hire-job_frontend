@@ -15,20 +15,20 @@ import { createSkill } from '../../config/redux/actions/skillAction'
 import { v4 as uuidv4 } from 'uuid';
 import { createPortofolio } from '../../config/redux/actions/portofolioAction'
 import ModalUpdate from '../../components/modalupdatepengalaman'
+import { useRouter } from 'next/router'
 
 
-const ProfilePekerjaUpdate = () => {
+const ProfilePekerjaUpdate = (props) => {
 
     const dispatch = useDispatch();
-
     const [users, setUsers] = useState([]);
     const [getid, setGetId] = useState(null);
     const [data, setData] = useState({
-        pekerja_name: "",
-        pekerja_jobdesk: "",
-        pekerja_domisili: "",
-        pekerja_tempat_kerja: "",
-        pekerja_deskripsi: ""
+        pekerja_name: props.pekerja_name,
+        pekerja_jobdesk: props.pekerja_jobdesk,
+        pekerja_domisili: props.pekerja_domisili,
+        pekerja_tempat_kerja: props.pekerja_tempat_kerja,
+        pekerja_deskripsi: props.pekerja_deskripsi
     });
     const [image, setImage] = useState(null);
     const handleUpload = (e) => {
@@ -36,8 +36,8 @@ const ProfilePekerjaUpdate = () => {
     };
 
     const handleChange = (e) => {
-        setData({
-            ...data,
+        setUsers({
+            ...users,
             [e.target.name]: e.target.value,
         });
     };
@@ -67,7 +67,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pengalaman/pekerja/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pengalaman/pekerja/${getid}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                 }, [])
@@ -97,21 +97,21 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/${getid}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
-                    console.log(res.data.data[0]);
+                    // console.log(res.data.data[0]);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getid]);
-
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/skill/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/skill/${getid}`)
                 .then((res) => {
                     setSkill(res.data.data);
                 }, [])
@@ -154,12 +154,12 @@ const ProfilePekerjaUpdate = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("pekerja_photo", image);
-        formData.append("pekerja_name", data.pekerja_name);
-        formData.append("pekerja_jobdesk", data.pekerja_jobdesk);
-        formData.append("pekerja_domisili", data.pekerja_domisili);
-        formData.append("pekerja_tempat_kerja", data.pekerja_tempat_kerja);
-        formData.append("pekerja_deskripsi", data.pekerja_deskripsi);
-        axios.put(`https://hire-job-backend.vercel.app/pekerja/profile/${getid}`,
+        formData.append("pekerja_name", users.pekerja_name);
+        formData.append("pekerja_jobdesk", users.pekerja_jobdesk);
+        formData.append("pekerja_domisili", users.pekerja_domisili);
+        formData.append("pekerja_tempat_kerja", users.pekerja_tempat_kerja);
+        formData.append("pekerja_deskripsi", users.pekerja_deskripsi);
+        axios.put(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/${getid}`,
             formData,
             {
                 headers: {
@@ -175,9 +175,8 @@ const ProfilePekerjaUpdate = () => {
             });
     };
 
-
     const handleDelete = (pengalaman_kerja_id) => {
-        axios.delete(`https://hire-job-backend.vercel.app/pengalaman/${pengalaman_kerja_id}`)
+        axios.delete(`${process.env.NEXT_PUBLIC_API}/pengalaman/${pengalaman_kerja_id}`)
             .then((res) => {
                 Swal({
                     title: "Apakah Anda yakin?",
@@ -187,7 +186,7 @@ const ProfilePekerjaUpdate = () => {
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        axios.delete(`https://hire-job-backend.vercel.app/pengalaman_kerja/${pengalaman_kerja_id}`)
+                        axios.delete(`${process.env.NEXT_PUBLIC_API}/pengalaman_kerja/${pengalaman_kerja_id}`)
                             .then((res) => {
                                 setPengalaman((prevPengalaman) =>
                                     prevPengalaman.filter(
@@ -212,7 +211,7 @@ const ProfilePekerjaUpdate = () => {
         const updatedSkills = skill.filter((s) => s.skill_id !== skill_id);
         setSkill(updatedSkills);
 
-        axios.delete(`https://hire-job-backend.vercel.app/skill/${skill_id}`)
+        axios.delete(`${process.env.NEXT_PUBLIC_API}/skill/${skill_id}`)
             .then((res) => {
                 console.log(res);
             })
@@ -229,7 +228,7 @@ const ProfilePekerjaUpdate = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/portofolio/pekerja/${getid}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                 }, [])
@@ -242,7 +241,7 @@ const ProfilePekerjaUpdate = () => {
     }, [getid]);
 
     const handleDeletePortofolio = (portofolio_id) => {
-        axios.delete(`https://hire-job-backend.vercel.app/portofolio/${portofolio_id}`)
+        axios.delete(`${process.env.NEXT_PUBLIC_API}/portofolio/${portofolio_id}`)
             .then((res) => {
                 Swal({
                     title: "Apakah Anda yakin?",
@@ -252,7 +251,7 @@ const ProfilePekerjaUpdate = () => {
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        axios.delete(`https://hire-job-backend.vercel.app/portofolio/${portofolio_id}`)
+                        axios.delete(`${process.env.NEXT_PUBLIC_API}/portofolio/${portofolio_id}`)
                             .then((res) => {
                                 setPortofolio((prevPortofolio) =>
                                     prevPortofolio.filter(
@@ -330,20 +329,15 @@ const ProfilePekerjaUpdate = () => {
                                     >
                                         <div
                                             className="row"
-                                            style={{ display: "flex", justifyContent: "center" }}
-                                        >
-                                            <div style={{ display: "flex" }}>
+                                            >
+                                                <center>
+                                            <div>
                                                 <input
                                                     type='file'
                                                     name="pekerja_photo"
                                                     value={data.pekerja_photo}
                                                     onChange={handleUpload}
                                                 />
-                                                {/* <Image
-                                                    src={edit}
-                                                    style={{ width: 16, height: 16 }}
-                                                />
-                                                <h5 style={{ marginLeft: 5 }}>Edit</h5> */}
                                             </div>
                                             <div>
                                                 <Image
@@ -358,6 +352,7 @@ const ProfilePekerjaUpdate = () => {
                                                     style={{ marginTop: 10, borderRadius: 100 }}
                                                 />
                                             </div>
+                                            </center>
                                         </div>
                                     </div>
                                     <div className="col-md-12" style={{ marginTop: 25 }}>
@@ -394,7 +389,7 @@ const ProfilePekerjaUpdate = () => {
                                         </div>
                                     </form>
                                     <div className="col-md-12">
-                                        <Link href="/profilepekerja">
+                                        <Link href={`/profilepekerja/${getid}`}>
                                             <button
                                                 type="button"
                                                 className="btn border"
@@ -417,7 +412,7 @@ const ProfilePekerjaUpdate = () => {
                                 {Array.isArray(data) ? (
                                     data.map((worker) => (
  */}
-                                <div
+                                <div key={getid}
                                     className="border"
                                     style={{
                                         borderRadius: 10,
@@ -440,7 +435,7 @@ const ProfilePekerjaUpdate = () => {
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="pekerja_name"
-                                                value={data.pekerja_name}
+                                                value={users.pekerja_name}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -456,7 +451,7 @@ const ProfilePekerjaUpdate = () => {
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="pekerja_jobdesk"
-                                                value={data.pekerja_jobdesk}
+                                                value={users.pekerja_jobdesk}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -472,7 +467,7 @@ const ProfilePekerjaUpdate = () => {
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="pekerja_domisili"
-                                                value={data.pekerja_domisili}
+                                                value={users.pekerja_domisili}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -488,8 +483,8 @@ const ProfilePekerjaUpdate = () => {
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="pekerja_tempat_kerja"
-                                                defaultValue={"Tempat Kerja"}
-                                                value={data.pekerja_tempat_kerja}
+                                                defaultValue={users.pekerja_tempat_kerja}
+                                                value={users.pekerja_tempat_kerja}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -502,9 +497,9 @@ const ProfilePekerjaUpdate = () => {
                                                 className="form-control"
                                                 aria-label="With textarea"
                                                 placeholder="Tuliskan deskipsi singkat"
-                                                defaultValue={"Deskripsi"}
+                                                defaultValue={users.pekerja_deskripsi}
                                                 name="pekerja_deskripsi"
-                                                value={data.pekerja_deskripsi}
+                                                value={users.pekerja_deskripsi}
                                                 onChange={handleChange}
                                                 required
                                             />

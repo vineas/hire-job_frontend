@@ -47,7 +47,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/skill/${pekerja_id}`)
                 .then((res) => {
                     setSkill(res.data.data);
                     setIsLoading(false);
@@ -61,7 +61,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/${pekerja_id}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/${pekerja_id}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                     setIsLoading(false);
@@ -75,7 +75,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/portofolio/pekerja/${pekerja_id}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/portofolio/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPortofolio(res.data.data);
                     setIsLoading(false);

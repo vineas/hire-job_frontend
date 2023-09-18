@@ -25,7 +25,7 @@ const ModalUpdate = ({ pengalaman_kerja_id, posisi, nama_perusahaan, dari, sampa
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const experiences = await axios.put(`https://hire-job-backend.vercel.app/pengalaman/${pengalaman_kerja_id}`,
+            const experiences = await axios.put(`${process.env.NEXT_PUBLIC_API}/pengalaman/${pengalaman_kerja_id}`,
                 data
             );
             const result = experiences.data.data;

@@ -11,7 +11,7 @@ import defaultProfile from '../../assets/img/user_default.jpeg'
 
 
 export async function getServerSideProps() {
-        const res = await axios.get(`https://hire-job-backend.vercel.app/pekerja/profile`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile`);
         return {
             props: { pekerja: res.data.data },
         };

@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import ProfilePekerja from '../profilepekerja'
-import ProfilePerekrut from '../profileperekrut'
+// import React, { useEffect, useState } from 'react'
+// import ProfilePekerja from '../profilepekerja/[pekerja_id]'
+// import ProfilePerekrut from '../profileperekrut'
 
-const Profile = () => {
-  const [isPekerja, setIsPekerja] = useState(false);
+// const Profile = () => {
+//   const [isPekerja, setIsPekerja] = useState(false);
 
-  useEffect(() => {
-    const pekerjaId = localStorage.getItem('pekerja_id');
-    setIsPekerja(!!pekerjaId);
-  }, []);
+//   useEffect(() => {
+//     const pekerjaId = localStorage.getItem('pekerja_id');
+//     setIsPekerja(!!pekerjaId);
+//   }, []);
 
-  return (
-    <>
-      {isPekerja ? <ProfilePekerja /> : <ProfilePerekrut />}
-    </>
-  )
-}
 
-export default Profile
+
+//   return (
+//     <>
+//       {isPekerja ? <ProfilePekerja /> : <ProfilePerekrut />}
+//     </>
+//   )
+// }
+
+// export default Profile

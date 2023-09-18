@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 export const getPortofolio = (setPortofolio) => async (dispatch) => {
   try {
     axios
-      .get(`https://hire-job-backend.vercel.app/pekerja/profile/portofolio`)
+      .get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/portofolio`)
       .then(function (respose) {
         setPortofolio(respose.data.data);
       });
@@ -22,7 +22,7 @@ export const getPortofolio = (setPortofolio) => async (dispatch) => {
 
 export const getDetailPortofolio = (setPortofolio, id) => async (dispatch) => {
   try {
-    axios.get(`https://hire-job-backend.vercel.app/pekerja/profile/portofolio/${id}`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile/portofolio/${id}`).then((res) => {
       setPortofolio(res.data.data[0]);
 
       console.log(res.data.data[0]);
@@ -48,7 +48,7 @@ export const createPortofolio = (portofolio, portofolio_image) => async (dispatc
     formData.append("pekerja_id", portofolio.pekerja_id);
 
     console.log(portofolio);
-    axios.post(`https://hire-job-backend.vercel.app/portofolio`, formData)
+    axios.post(`${process.env.NEXT_PUBLIC_API}/portofolio`, formData)
       .then((res) => {
         console.log(res);
         Swal.fire({

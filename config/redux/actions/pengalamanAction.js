@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 export const getPengalaman = (setPengalaman) => async (dispatch) => {
   try {
     axios
-      .get(`https://hire-job-backend.vercel.app/pengalaman`)
+      .get(`${process.env.NEXT_PUBLIC_API}/pengalaman`)
       .then(function (respose) {
         setPengalaman(respose.data.data);
       });
@@ -22,7 +22,7 @@ export const getPengalaman = (setPengalaman) => async (dispatch) => {
 
 export const getDetailPengalaman = (setPengalaman, id) => async (dispatch) => {
   try {
-    axios.get(`https://hire-job-backend.vercel.app/pekerja/pengalaman/${id}`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/pengalaman/${id}`).then((res) => {
       setPengalaman(res.data.data[0]);
 
       console.log(res.data.data[0]);
@@ -47,7 +47,7 @@ export const createPengalaman = (pengalaman) => async (dispatch) => {
     formData.append("pekerja_id", pengalaman.pekerja_id);
 
     console.log(pengalaman);
-    axios.post(`https://hire-job-backend.vercel.app/pengalaman`, formData, {
+    axios.post(`${process.env.NEXT_PUBLIC_API}/pengalaman`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import defaultProfile from '../../assets/img/user_default.jpeg'
 import Link from 'next/link'
 import axios from 'axios'
-
+ 
 
 const ProfilePerekrut = () => {
     const [perekrut, setPerekrut] = useState([]);
@@ -33,7 +33,7 @@ const ProfilePerekrut = () => {
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/perekrut/profile/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/perekrut/profile/${getid}`)
                 .then((res) => {
                     setPerekrut(res.data.data[0]);
                     console.log(res.data.data[0]);
@@ -110,7 +110,7 @@ const ProfilePerekrut = () => {
                                 className="col-md-12"
                                 style={{ display: "flex", justifyContent: "center", marginTop: 10 }}
                             >
-                                <Link href='/profileperekrutupdate'>
+                                <Link href={`/profileperekrutupdate/${getid}`}>
                                     <button
                                     perekrut_id={perekrut.perekrut_id}
                                     perekrut_perusahaan={perekrut.perekrut_perusahaan}

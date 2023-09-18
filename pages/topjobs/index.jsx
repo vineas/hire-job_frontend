@@ -29,7 +29,7 @@ const TopJobs = () => {
 
 
     useEffect(() => {
-        axios.get(`https://hire-job-backend.vercel.app/pekerja/profile`)
+        axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile`)
             .then((res) => {
                 setIsLoading(false);
                 setUsers(res.data.data);
@@ -37,21 +37,8 @@ const TopJobs = () => {
             .catch((err) => {
                 console.log(err);
             });
-            // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // useEffect(() => {
-    //     if (pekerja_id !== null) {
-    //         axios.get(`https://hire-job-backend.vercel.app/skill/${pekerja_id}`)
-    //             .then((res) => {
-    //                 setSkill(res.data.data);
-    //             }, [])
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-
-    //     }
-    // }, [pekerja_id]);
 
     return (
         <>
@@ -201,9 +188,6 @@ const TopJobs = () => {
                                             </div>
                                             <div>
                                                 <strong>Skills: {user.skill_names.join(', ')}</strong>
-                                                <div>
-
-                                                </div>
                                             </div>
                                         </div>
                                         <div
@@ -230,7 +214,6 @@ const TopJobs = () => {
                                                 </button>
                                             </Link>
                                         </div>
-                                        <hr />
                                     </div>
 
                                 ))

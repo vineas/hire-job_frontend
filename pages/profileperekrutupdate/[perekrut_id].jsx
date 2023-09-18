@@ -7,7 +7,7 @@ import Image from 'next/image'
 import NavbarLogin from '../../components/navbarlogin'
 import Footer from '../../components/footer'
 import Link from 'next/link'
-import ProfilePerekrut from '../profileperekrut'
+// import ProfilePerekrut from '../profileperekrut'
 import axios from 'axios'
 import Script from 'next/script'
 import { createPengalaman } from '../../config/redux/actions/pengalamanAction'
@@ -36,8 +36,8 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
         setImage(e.target.files[0]);
     };
     const handleChange = (e) => {
-        setData({
-            ...data,
+        setUsers({
+            ...users,
             [e.target.name]: e.target.value,
         });
     };
@@ -57,7 +57,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
 
     useEffect(() => {
         if (getid !== null) {
-            axios.get(`https://hire-job-backend.vercel.app/perekrut/profile/${getid}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/perekrut/profile/${getid}`)
                 .then((res) => {
                     setUsers(res.data.data[0]);
                     console.log(res.data.data[0]);
@@ -72,16 +72,16 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("perekrut_perusahaan", data.perekrut_perusahaan);
+        formData.append("perekrut_perusahaan", users.perekrut_perusahaan);
         formData.append("perekrut_photo", image);
-        formData.append("perekrut_bidang", data.perekrut_bidang);
-        formData.append("perekrut_kota", data.perekrut_kota);
-        formData.append("perekrut_deskripsi", data.perekrut_deskripsi);
-        formData.append("perekrut_instagram", data.perekrut_instagram);
-        formData.append("perekrut_phone", data.perekrut_phone);
-        formData.append("perekrut_linkedin", data.perekrut_linkedin);
+        formData.append("perekrut_bidang", users.perekrut_bidang);
+        formData.append("perekrut_kota", users.perekrut_kota);
+        formData.append("perekrut_deskripsi", users.perekrut_deskripsi);
+        formData.append("perekrut_instagram", users.perekrut_instagram);
+        formData.append("perekrut_phone", users.perekrut_phone);
+        formData.append("perekrut_linkedin", users.perekrut_linkedin);
 
-        axios.put(`https://hire-job-backend.vercel.app/perekrut/profile/${getid}`,
+        axios.put(`${process.env.NEXT_PUBLIC_API}/perekrut/profile/${getid}`,
             formData,
             {
                 headers: {
@@ -211,7 +211,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                         </div>
                                     </form>
                                     <div className="col-md-12">
-                                        <Link href="/profileperekrut">
+                                        <Link href={`/profileperekrut/${getid}`}>
                                             <button
                                                 type="button"
                                                 className="btn border"
@@ -255,7 +255,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_perusahaan"
-                                                value={data.perekrut_perusahaan}
+                                                value={users.perekrut_perusahaan}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -271,7 +271,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_bidang"
-                                                value={data.perekrut_bidang}
+                                                value={users.perekrut_bidang}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -287,7 +287,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_kota"
-                                                value={data.perekrut_kota}
+                                                value={users.perekrut_kota}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -303,7 +303,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 placeholder="Tuliskan deskipsi singkat"
                                                 defaultValue={"Deskripsi"}
                                                 name="perekrut_deskripsi"
-                                                value={data.perekrut_deskripsi}
+                                                value={users.perekrut_deskripsi}
                                                 onChange={handleChange}
                                                 required
 
@@ -320,7 +320,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_instagram"
-                                                value={data.perekrut_instagram}
+                                                value={users.perekrut_instagram}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -336,7 +336,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_phone"
-                                                value={data.perekrut_phone}
+                                                value={users.perekrut_phone}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -352,7 +352,7 @@ const ProfilePerekrutUpdate = ({ perekrut_id, perekrut_perusahaan, perekrut_phot
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 name="perekrut_linkedin"
-                                                value={data.perekrut_linkedin}
+                                                value={users.perekrut_linkedin}
                                                 onChange={handleChange}
                                                 required
                                             />
