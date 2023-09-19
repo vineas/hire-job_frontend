@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const ProfilePerekrut = () => {
     const [perekrut, setPerekrut] = useState([]);
-    const [getid, setGetId] = useState(null);
+    const [getid, setGetId] = useState(null); 
 
     useEffect(() => {
         const storedId = localStorage.getItem("perekrut_id");
