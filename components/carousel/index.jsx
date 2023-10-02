@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,10 +10,22 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import Head from 'next/head';
 import Image from 'next/image';
-import harry from '../../assets/img/landingPage/harry.png'
-import niall from '../../assets/img/landingPage/niall.png'
-import louis from '../../assets/img/landingPage/louis.png'
+import defaultProfile from '../../assets/img/user_default.jpeg'
+import axios from 'axios';
 const Carousel = () => {
+
+    let [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile`)
+            .then((res) => {
+                setUsers(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <>
             <Head>
@@ -31,7 +43,9 @@ const Carousel = () => {
                     breakpoints={{
                         0: {
                             slidesPerView: 1,
-                            spaceBetween: 10
+                            spaceBetween: 10,
+                            centeredSlides: true
+
                         },
                         480: {
                             slidesPerView: 3,
@@ -54,182 +68,43 @@ const Carousel = () => {
                     className="mySwiper"
                 >
 
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={harry}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Harry Styles</h4>
+                    {users.map((item) => (
+                        <SwiperSlide key={item.pekerja_id}>
+                            <div className='border' style={{ width: '100%', display: 'flex', justifyContent: 'center', borderRadius: '5%', overflow: 'hidden', padding: '5px 10px' }}>
+                                <div className='row' style={{ marginTop: 14 }}>
+                                    <div className="col-md-1"></div>
+                                    <div className="col-md-10">
+                                        <div style={{ width: '100px', height: '100px', overflow: 'hidden', borderRadius: '50%', margin: 'auto' }}>
+                                            <Image
+                                                className='profile-photo'
+                                                src={item.pekerja_photo == "null" || item.pekerja_photo == null || item.pekerja_photo == "undefined" || item.pekerja_photo == undefined
+                                                    ? defaultProfile
+                                                    : item.pekerja_photo
+                                                }
+                                                width={100}
+                                                height={100}
+                                                alt="Pekerja Photo"
+                                                // layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div style={{ marginTop: 20 }}>
+                                            <h4>{item.pekerja_name}</h4>
+                                        </div>
+                                        <div>
+                                            <p>{item.pekerja_jobdesk == "null" || item.pekerja_jobdesk == null || item.pekerja_jobdesk == "undefined" || item.pekerja_jobdesk == undefined
+                                                ? "Jobdesk"
+                                                : item.pekerja_jobdesk}</p>
+                                        </div>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
+                                    <div className="col-md-1"></div>
                                 </div>
-                                <div className="col-md-1"></div>
                             </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={louis}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Louis Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Mobile Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={niall}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Niall Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={louis}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Louis Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={harry}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Harry Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={harry}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Harry Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='border' style={{ width: '90%', height: '90%', display: 'flex', justifyContent: 'center', borderRadius: 10 }}>
-                            <div className='row' style={{marginTop: 14}}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10">
-                                    <Image
-                                        src={harry}
-                                        style={{ width: '100px', height: '100px', display: 'flex', marginLeft: 'auto', marginRight: 'auto' }}
-                                    />
-                                    <div>
-                                        <h4>Harry Styles</h4>
-                                    </div>
-                                    <div>
-                                        <p>Web Developer</p>
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, odio!</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-1"></div>
-                            </div>
-
-                        </div>
-                    </SwiperSlide>
-
+                        </SwiperSlide>
+                    ))}
 
                 </Swiper>
             </div>

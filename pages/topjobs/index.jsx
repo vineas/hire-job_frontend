@@ -40,9 +40,14 @@ const TopJobs = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const [loginTrue, setLoginTrue] = useState(false);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setLoginTrue(!!token);
+    }, []);
     return (
         <>
-            <NavbarLogin />
+            {loginTrue ? <NavbarLogin /> : <Navbar />}
             <Head>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -157,7 +162,7 @@ const TopJobs = () => {
                                     <div className="row border" key={user.pekerja_id} style={{ marginTop: 10, padding: "20px 10px 20px 10px" }}>
                                         <div
                                             className="col-md-2"
-                                            style={{ display: "flex", alignItems: "center" }}
+                                            style={{ display: "flex", alignItems: "center", justifyContent: 'center' }}
                                         >
                                             <Image
                                                 className='profile-photo'
@@ -172,12 +177,12 @@ const TopJobs = () => {
                                             />
                                         </div>
 
-                                        <div className="col-md-6">
+                                        <div className="col-md-6" style={{marginTop:25}}>
                                             <div>
                                                 <h4>{user.pekerja_name}</h4>
                                             </div>
                                             <div>
-                                                <p>{user.pekerja_domisili == "null" || user.pekerja_jobdesk == null || user.pekerja_jobdesk == "undefined" || user.pekerja_jobdesk == undefined
+                                                <p>{user.pekerja_jobdesk == "null" || user.pekerja_jobdesk == null || user.pekerja_jobdesk == "undefined" || user.pekerja_jobdesk == undefined
                                                     ? "Jobdesk"
                                                     : user.pekerja_jobdesk}</p>
                                             </div>
@@ -195,7 +200,8 @@ const TopJobs = () => {
                                             style={{
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "end"
+                                                justifyContent: 'center',
+                                                // justifyContent: "end"
                                             }}
                                         >
                                             <Link key={user.pekerja_id} href={`/profilepekerjahire/${user.pekerja_id}`}>
@@ -208,9 +214,10 @@ const TopJobs = () => {
                                                         padding: "0px 30px 0px 30px",
                                                         backgroundColor: "#5E50A1",
                                                         color: "white",
+                                                        marginTop:25
                                                     }}
                                                 >
-                                                    Lihat profile
+                                                    See profile
                                                 </button>
                                             </Link>
                                         </div>

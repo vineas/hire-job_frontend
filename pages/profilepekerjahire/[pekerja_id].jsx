@@ -22,14 +22,15 @@ const ProfilePekerjaHire = () => {
     const [portofolio, setPortofolio] = useState([]);
     const [getid, setGetId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    // const [pengalamanKerja, setPengalamanKerja] = useState({
-    //     posisi: "",
-    //     nama_perusahaan: "",
-    //     dari: "",
-    //     sampai: "",
-    //     deskripsi: "",
-    //     pekerja_id: "",
-    // });
+    const [showModalUpdate, setShowModalUpdate] = useState(true);
+
+    useEffect(() => {
+        const pekerjaId = localStorage.getItem('pekerja_id');
+        if (pekerjaId) {
+            setShowModalUpdate(false);
+        }
+    }, []);
+
 
     useEffect(() => {
         if (pekerja_id) {
@@ -256,11 +257,13 @@ const ProfilePekerjaHire = () => {
                                             </div>
                                         </div> */}
                                     </div>
-                                    <ModalHiring
-                                        pekerja_id={users.pekerja_id}
-                                        pekerja_name={users.pekerja_name}
-                                        pekerja_email={users.pekerja_email}
-                                    />
+                                    {showModalUpdate && (
+                                        <ModalHiring
+                                            pekerja_id={users.pekerja_id}
+                                            pekerja_name={users.pekerja_name}
+                                            pekerja_email={users.pekerja_email}
+                                        />
+                                    )}
                                     {/* <div className="col-md-12" style={{ marginTop: 30 }}>
                                         <Link href='#'>
                                             <button

@@ -16,7 +16,7 @@ const Footer = () => {
                     backgroundColor: "#5E50A1",
                     width: "100%",
                     height: 401,
-                    marginTop: 180
+                    marginTop: 100
                 }}
             >
                 <div className="container" style={{ paddingTop: 80 }}>
