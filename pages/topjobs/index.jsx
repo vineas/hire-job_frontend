@@ -25,25 +25,7 @@ const TopJobs = () => {
     let [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-    const [profileLink, setProfileLink] = useState('/loginpekerja');
     const router = useRouter();
-
-    useEffect(() => {
-        const pekerjaId = localStorage.getItem('pekerja_id');
-        const perekrutId = localStorage.getItem('perekrut_id');
-
-        if (pekerjaId || perekrutId) {
-            setProfileLink(`/profilepekerjahire/${pekerjaId || perekrutId}`);
-        }
-    }, []);
-
-    const handleSeeProfileClick = () => {
-        if (profileLink === '/login') {
-            router.push('/login');
-        }
-    };
-
-
 
     useEffect(() => {
         axios.get(`${process.env.NEXT_PUBLIC_API}/pekerja/profile`)
@@ -62,6 +44,7 @@ const TopJobs = () => {
         const token = localStorage.getItem('token');
         setLoginTrue(!!token);
     }, []);
+
     return (
         <>
             {loginTrue ? <NavbarLogin /> : <Navbar />}
@@ -221,7 +204,7 @@ const TopJobs = () => {
                                                 // justifyContent: "end"
                                             }}
                                         >
-                                            <Link href={profileLink}>
+                                            <Link key={user.pekerja_id} href={`/profilepekerjahire/${user.pekerja_id}`}>
                                                 <button
                                                     className="btn btn-outline-secondary"
                                                     type="button"
@@ -233,7 +216,6 @@ const TopJobs = () => {
                                                         color: "white",
                                                         marginTop: 25
                                                     }}
-                                                    onClick={handleSeeProfileClick}
                                                 >
                                                     See profile
                                                 </button>

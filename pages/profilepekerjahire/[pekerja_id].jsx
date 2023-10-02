@@ -26,6 +26,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         const pekerjaId = localStorage.getItem('pekerja_id');
+        // const perekrutId = localStorage.getItem('perekrut_id');
         if (pekerjaId) {
             setShowModalUpdate(false);
         }

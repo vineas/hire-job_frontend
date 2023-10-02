@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const ModalHiring = ({ pekerja_id, pekerja_name, pekerja_email }) => {
     const router = useRouter();
@@ -65,16 +66,25 @@ const ModalHiring = ({ pekerja_id, pekerja_name, pekerja_email }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const hiring = await axios.post(`${process.env.NEXT_PUBLIC_API}/hiring`,
-                data
-            );
+            const hiring = await axios.post(`${process.env.NEXT_PUBLIC_API}/hiring`, data);
             const result = hiring.data.data;
             setShow(false);
+    
+            // Menampilkan SweetAlert jika pesan berhasil terkirim
+            Swal.fire({
+                icon: 'success',
+                title: 'Pesan Terkirim!',
+                text: 'Pesan Anda telah berhasil terkirim.',
+                showConfirmButton: false,
+                timer: 1500 // Durasi tampilan SweetAlert dalam milidetik (opsional)
+            });
+    
             window.location.reload();
         } catch (err) {
             console.log(err.message);
         }
     };
+    
 
 
     return (

@@ -12,6 +12,7 @@ import NavbarLogin from '../../components/navbarlogin'
 import Link from 'next/link'
 import Carousel from '../../components/carousel'
 import Script from 'next/script'
+import { useRouter } from 'next/router'
 
 const Home = () => {
 
@@ -20,6 +21,21 @@ const Home = () => {
         const token = localStorage.getItem('token');
         setLoginTrue(!!token);
     }, []);
+
+    const router = useRouter();
+    const handleClick = () => {
+        const perekrutId = localStorage.getItem('perekrut_id');
+        const pekerjaId = localStorage.getItem('pekerja_id');
+
+        if (perekrutId || pekerjaId) {
+            router.push('/topjobs');
+        } else {
+            router.push('/loginpekerja');
+        }
+    };
+
+
+
     return (
         <>
             {loginTrue ? <NavbarLogin /> : <Navbar />}
@@ -58,20 +74,19 @@ const Home = () => {
                                             obcaecati. Culpa, unde id sit commodi nesciunt atque quod
                                             necessitatibus veniam?
                                         </div>
-                                        <div className="btn-sect-1" style={{ marginTop: 50 }}>
-                                            <Link href="/topjobs">
-                                                <button
-                                                    style={{
-                                                        padding: "15px 30px 15px 30px",
-                                                        borderRadius: 10,
-                                                        border: 1,
-                                                        backgroundColor: "#5E50A1",
-                                                        color: "white"
-                                                    }}
-                                                >
-                                                    Mulai dari sekarang
-                                                </button>
-                                            </Link>
+                                        <div style={{marginTop:30, marginBottom:30}}>
+                                            <button
+                                                style={{
+                                                    padding: "15px 30px 15px 30px",
+                                                    borderRadius: 10,
+                                                    border: 1,
+                                                    backgroundColor: "#5E50A1",
+                                                    color: "white"
+                                                }}
+                                                onClick={handleClick}
+                                            >
+                                                Mulai dari sekarang
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="col-md-2"></div>
@@ -160,7 +175,7 @@ const Home = () => {
                                                                 <Image src={check} style={{ maxWidth: '20px', height: 'auto' }} />
                                                             </div>
                                                             <div>
-                                                                <p style={{marginTop:18}}>{skill}</p>
+                                                                <p style={{ marginTop: 18 }}>{skill}</p>
                                                             </div>
                                                         </div>
                                                     ))}
@@ -174,7 +189,7 @@ const Home = () => {
                                                                 <Image src={check} style={{ maxWidth: '20px', height: 'auto' }} />
                                                             </div>
                                                             <div >
-                                                                <p style={{marginTop:18}}>{skill}</p>
+                                                                <p style={{ marginTop: 18 }}>{skill}</p>
                                                             </div>
                                                         </div>
                                                     ))}
@@ -220,19 +235,18 @@ const Home = () => {
                                 </div>
                                 <div className="col-md-1"></div>
                                 <div className="col-md-5 d-flex justify-content-center">
-                                    <Link href="/topjobs">
-                                        <button
-                                            style={{
-                                                padding: "9px 15px 9px 15px",
-                                                borderRadius: "10px",
-                                                border: "none",
-                                                backgroundColor: "white",
-                                                color: "#5E50A1"
-                                            }}
-                                        >
-                                            Mulai dari sekarang
-                                        </button>
-                                    </Link>
+                                    <button
+                                        style={{
+                                            padding: "9px 15px 9px 15px",
+                                            borderRadius: "10px",
+                                            border: "none",
+                                            backgroundColor: "white",
+                                            color: "#5E50A1"
+                                        }}
+                                        onClick={handleClick}
+                                    >
+                                        Mulai dari sekarang
+                                    </button>
                                 </div>
                             </div>
                         </div>
