@@ -23,9 +23,26 @@ const TopJobs = () => {
     const itemsPerPage = 5;
     let { pekerja_id } = useParams();
     let [users, setUsers] = useState([]);
-
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [profileLink, setProfileLink] = useState('/loginpekerja');
+    const router = useRouter();
+
+    useEffect(() => {
+        const pekerjaId = localStorage.getItem('pekerja_id');
+        const perekrutId = localStorage.getItem('perekrut_id');
+
+        if (pekerjaId || perekrutId) {
+            setProfileLink(`/profilepekerjahire/${pekerjaId || perekrutId}`);
+        }
+    }, []);
+
+    const handleSeeProfileClick = () => {
+        if (profileLink === '/login') {
+            router.push('/login');
+        }
+    };
+
 
 
     useEffect(() => {
@@ -177,7 +194,7 @@ const TopJobs = () => {
                                             />
                                         </div>
 
-                                        <div className="col-md-6" style={{marginTop:25}}>
+                                        <div className="col-md-6" style={{ marginTop: 25 }}>
                                             <div>
                                                 <h4>{user.pekerja_name}</h4>
                                             </div>
@@ -204,7 +221,7 @@ const TopJobs = () => {
                                                 // justifyContent: "end"
                                             }}
                                         >
-                                            <Link key={user.pekerja_id} href={`/profilepekerjahire/${user.pekerja_id}`}>
+                                            <Link href={profileLink}>
                                                 <button
                                                     className="btn btn-outline-secondary"
                                                     type="button"
@@ -214,8 +231,9 @@ const TopJobs = () => {
                                                         padding: "0px 30px 0px 30px",
                                                         backgroundColor: "#5E50A1",
                                                         color: "white",
-                                                        marginTop:25
+                                                        marginTop: 25
                                                     }}
+                                                    onClick={handleSeeProfileClick}
                                                 >
                                                     See profile
                                                 </button>

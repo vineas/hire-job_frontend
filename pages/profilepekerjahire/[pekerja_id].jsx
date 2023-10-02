@@ -34,7 +34,7 @@ const ProfilePekerjaHire = () => {
 
     useEffect(() => {
         if (pekerja_id) {
-            axios.get(`http://hire-job-backend.vercel.app/pengalaman/pekerja/${pekerja_id}`)
+            axios.get(`${process.env.NEXT_PUBLIC_API}/pengalaman/pekerja/${pekerja_id}`)
                 .then((res) => {
                     setPengalaman(res.data.data);
                     setIsLoading(false);
@@ -258,11 +258,11 @@ const ProfilePekerjaHire = () => {
                                         </div> */}
                                     </div>
                                     {showModalUpdate && (
-                                        <ModalHiring
-                                            pekerja_id={users.pekerja_id}
-                                            pekerja_name={users.pekerja_name}
-                                            pekerja_email={users.pekerja_email}
-                                        />
+                                    <ModalHiring
+                                        pekerja_id={users.pekerja_id}
+                                        pekerja_name={users.pekerja_name}
+                                        pekerja_email={users.pekerja_email}
+                                    />
                                     )}
                                     {/* <div className="col-md-12" style={{ marginTop: 30 }}>
                                         <Link href='#'>
